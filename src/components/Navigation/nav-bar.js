@@ -4,32 +4,21 @@ import * as AiIcons from 'react-icons/ai';
 import { NavLink } from 'react-router-dom';
 import { SidebarData } from './sider-bar';
 import './navbar.css';
-import AuthContext from '../../context/auth-context';
 
 
 function Navbar() {
     const [sidebar, setSidebar] = useState(false);
     const showSidebar = () => { setSidebar(!sidebar) };
-    const context = useContext(AuthContext)
-
-
     return (
         <>
             <header>
                 <div className='navbar-header'>
-                    {!context.token && (
-                        <NavLink to='/auth' className='menu-bars'>
-                            <FaIcons.FaUser />
-                        </NavLink>
-                    )}
-                    {context.token && (
-                        <>
-                        <NavLink to='#' className='menu-bars exit-icon' onClick={context.logout}>
-                            <FaIcons.FaSignOutAlt />
-                        </NavLink>
-                        </>
-                    )}
-
+                    <NavLink to='/auth' className='menu-bars'>
+                        <FaIcons.FaUser />
+                    </NavLink>
+                    <NavLink to='#' className='menu-bars exit-icon'>
+                        <FaIcons.FaSignOutAlt />
+                    </NavLink>
                     <NavLink to='#' className='menu-bars'>
                         <FaIcons.FaBars onClick={showSidebar} />
                     </NavLink>
