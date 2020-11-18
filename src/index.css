@@ -20,3 +20,7 @@ body {
   align-items: baseline;
 }
   
+.form-container {
+  width: 400px;
+  margin: auto;
+}

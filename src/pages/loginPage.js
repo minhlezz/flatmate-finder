@@ -1,50 +1,84 @@
 import React, { useContext, useState } from 'react';
-import { Form, Row, Col, Button } from 'react-bootstrap';
+import { Button, Form } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
-import './../styles/auth.css';
+import { useForm } from '../utils/useFormHook';
+import { gql, useMutation } from '@apollo/client';
+import { AuthContext } from '../context/auth-context';
 
-const loginStyle = ({
-    button: {
-        marginLeft: '5rem',
-        width: '8rem'
-    },
 
-    nav: {
-        margin: '0 0.5rem'
+const LOGIN_USER = gql`
+  mutation Login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+        token
+        tokenExpiration
+        userId
     }
+  }
+`;
 
-})
+function LoginPage(props) {
+    const context = useContext(AuthContext);
+    const [errors, setErrors] = useState({});
+    const { onChange, onSubmit, values } = useForm(loginUserCallback, {
+        email: '',
+        password: '',
+    });
 
-const loginPage = (props) => {
+    const [loginUser, { loading }] = useMutation(LOGIN_USER, {
+        update(_, { data: { login: userData } }) {
+            console.log(userData);
+            context.login(userData)
+            props.history.push('/flatmate');
+        },
+        onError(err) {
+            console.log(err.graphQLErrors[0].extensions.exception.errors);
+            setErrors(err.graphQLErrors[0].extensions.exception.errors);
+        },
+        variables: values
+    });
+
+
+    function loginUserCallback() {
+        loginUser();
+    }
     return (
-        <div className="auth-form">
+        <div className="form-container ">
             <h1>Login</h1>
-            <Form>
-                <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" />
-                    <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
-                </Form.Text>
-                </Form.Group>
-
-                <Form.Group controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" />
-                </Form.Group>
-                <div className="horizontal-items">
-                    <Button variant="primary" type="submit">
-                        Submit
+            <Form onSubmit={onSubmit} noValidate className={loading ? 'loading' : ''}>
+                <Form.Input
+                    label="Email"
+                    placeholder="Email.."
+                    name="email"
+                    type="email"
+                    value={values.email}
+                    error={errors.email ? true : false}
+                    onChange={onChange}
+                />
+                <Form.Input
+                    label="Password"
+                    placeholder="Password.."
+                    name="password"
+                    type="password"
+                    value={values.password}
+                    error={errors.password ? true : false}
+                    onChange={onChange}
+                />
+                <Button type="submit" primary>
+                    Login
                 </Button>
-                    <NavLink
-                        to='/register'
-                        style={{ marginLeft: '1rem' }}
-                    >No Account Yet?? Register now!</NavLink>
-                </div>
-
+                <p>Have an account yet? <NavLink to='/register'>Register!!</NavLink></p>
             </Form>
+            {Object.keys(errors).length > 0 && (
+                <div className="ui error message">
+                    <ul className="list">
+                        {Object.values(errors).map((value) => (
+                            <li key={value}>{value}</li>
+                        ))}
+                    </ul>
+                </div>
+            )}
         </div>
     )
 }
 
-export default loginPage;
+export default LoginPage;
