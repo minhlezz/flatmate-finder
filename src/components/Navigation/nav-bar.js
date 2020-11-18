@@ -1,58 +1,39 @@
 import React, { useState, useContext } from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
+import * as IoIcons from 'react-icons/io';
 import { NavLink } from 'react-router-dom';
-import { SidebarData } from './sider-bar';
 import './navbar.css';
-import AuthContext from '../../context/auth-context';
-
+import { AuthContext } from '../../context/auth-context';
 
 function Navbar() {
-    const [sidebar, setSidebar] = useState(false);
-    const showSidebar = () => { setSidebar(!sidebar) };
-    const context = useContext(AuthContext)
-
-
+    const { user, logout } = useContext(AuthContext);
     return (
         <>
             <header>
                 <div className='navbar-header'>
-                    {!context.token && (
-                        <NavLink to='/auth' className='menu-bars'>
-                            <FaIcons.FaUser />
-                        </NavLink>
-                    )}
-                    {context.token && (
-                        <>
-                        <NavLink to='#' className='menu-bars exit-icon' onClick={context.logout}>
-                            <FaIcons.FaSignOutAlt />
-                        </NavLink>
-                        </>
-                    )}
-
-                    <NavLink to='#' className='menu-bars'>
-                        <FaIcons.FaBars onClick={showSidebar} />
+                    {!user && (<NavLink to='/login' className='menu-bars'>
+                        <FaIcons.FaUser />
+                    </NavLink>)}
+                    <NavLink to='/homepage' className='menu-bars'>
+                        <AiIcons.AiFillHome />
                     </NavLink>
+                    <NavLink to='/flatmate' className='menu-bars'>
+                        <IoIcons.IoMdPeople />
+                    </NavLink>
+                    {user && (<NavLink to='/profile' className='menu-bars'>
+                        <FaIcons.FaRegNewspaper />
+                    </NavLink>)}
+                    {user && (<NavLink to='/messages' className='menu-bars'>
+                        <FaIcons.FaEnvelopeOpenText />
+                    </NavLink>)}
+                    <NavLink to='/support' className='menu-bars'>
+                        <IoIcons.IoMdHelpCircle />
+                    </NavLink>
+                    {user && (<NavLink to='#' className='menu-bars exit-icon'>
+                        <FaIcons.FaSignOutAlt onClick={logout} />
+                    </NavLink>)}
                 </div>
-                <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-                    <ul className='nav-menu-items' onClick={showSidebar}>
-                        <li className='navbar-toggle'>
-                            <NavLink to='#' className='menu-bars'>
-                                <AiIcons.AiOutlineClose />
-                            </NavLink>
-                        </li>
-                        {SidebarData.map((item, index) => {
-                            return (
-                                <li key={index} className={item.cName}>
-                                    <NavLink to={item.path}>
-                                        {item.icon}
-                                        <span>{item.title}</span>
-                                    </NavLink>
-                                </li>
-                            );
-                        })}
-                    </ul>
-                </nav>
             </header>
 
 

@@ -3,7 +3,7 @@ import '../styles/profile.css';
 import ProfileCard from '../components/ProfileCard/profileCard';
 import ProfileDetails from '../components/ProfileCard/profileDetails';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import {Button} from 'react-bootstrap';
 
 
 function Profile() {
@@ -16,8 +16,12 @@ function Profile() {
             </div>
             <div className="right-container">
                 <div className="content">
-                    <div className="information">
-                        <h3>Personal Details</h3>
+                    <h3>Personal Details</h3>
+                    <div className="edit-profile">
+                      
+                    <Button variant="primary">Save</Button>
+                    <Button variant="secondary">Cancel</Button>
+                    <Button variant="danger">Edit</Button>
                     </div>
                     <ProfileDetails />
                 </div>
