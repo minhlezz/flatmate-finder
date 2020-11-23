@@ -1,13 +1,7 @@
 
 import React, { useReducer, createContext } from 'react';
-import jwtDecode from 'jsonwebtoken';
+import jwtDecode from 'jwt-decode';
 
-// export default React.createContext({
-//     token: null,
-//     userId: null,
-//     login: (token, userId, tokenExpiration) => {},
-//     logout: () => {}
-// });
 const initialState = {
     user: null
 }
@@ -25,7 +19,7 @@ const AuthContext = createContext({
     user: null,
     login: (userData) => { },
     logout: () => { },
-})
+});
 
 const authReducer = (state, action) => {
     switch (action.type) {
@@ -74,4 +68,4 @@ const AuthProvider = (props) => {
     )
 }
 
-export default { AuthContext, AuthProvider };
+export { AuthContext, AuthProvider };
