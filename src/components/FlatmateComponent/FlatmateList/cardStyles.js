@@ -6,13 +6,19 @@ const cardHFStyles = ({
         width: '55rem',
         display: 'flex',
         flexDirection: 'row',
-        margin: '2rem'
+        margin: '2rem',
     },
 
     body: {
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection:'column',
         flexWrap: 'wrap'
+    },
+    footer: {
+        display: 'flex',
+        flexDirection:'column',
+        alignItems: 'center',
+        width:'7rem',
     },
 
     image: {
@@ -20,6 +26,15 @@ const cardHFStyles = ({
         height: '18rem',
         borderRadius: '10px',
         margin:'1rem'
+    },
+
+    icon: {
+        width: '3rem',
+        height: '2rem',
+    },
+    btn: {
+        backgroundColor: '#417054',
+        
     }
 })
 

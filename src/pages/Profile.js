@@ -1,34 +1,37 @@
 import React from 'react';
 import '../styles/profile.css';
-import ProfileCard from '../components/ProfileCard/profileCard';
-import ProfileDetails from '../components/ProfileCard/profileDetails';
+import ProfileImages from '../components/ProfileComponent/profileImage';
+import ProfileForm from '../components/ProfileComponent/profileForm';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button} from 'react-bootstrap';
+import { Button, Divider } from 'semantic-ui-react';
+
 
 
 function Profile() {
-
     return (
-
-        <div className="flex-container">
-            <div className="left-container">
-                <ProfileCard />
-            </div>
-            <div className="right-container">
-                <div className="content">
-                    <h3>Personal Details</h3>
-                    <div className="edit-profile">
-                      
-                    <Button variant="primary">Save</Button>
-                    <Button variant="secondary">Cancel</Button>
-                    <Button variant="danger">Edit</Button>
-                    </div>
-                    <ProfileDetails />
+        <>
+            <div className="flex-container">
+                <div className="left">
+                    <ProfileImages />
+                    <Button>Upload Photo</Button>
                 </div>
-            </div>
-        </div>
+                <div className="right">
+                    <div className="content">
+                        <h3>Personal Details</h3>
+                        <ProfileForm />
+                    </div>
+                </div>
 
+            </div>
+            <Divider/>
+            <h1>Listings</h1>
+            <h3>Listing Cards........</h3>
+            
+        </>
     )
+
+
+
 }
 
 
