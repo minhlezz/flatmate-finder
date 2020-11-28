@@ -1,9 +1,8 @@
 import React, {useState}  from 'react';
 import * as FaIcons from 'react-icons/fa';
 import { Form, FormControl, Button } from 'react-bootstrap';
-import HomeModal from '../components/Modal/homeModal';
+import HomeModal from '../components/Modal/homeFilterModal';
 import '../styles/flatmate.css';
-import HomeCard from '../components/Cards/HomeCard/homeCard';
 
 
 export default function HomePage() {
@@ -43,7 +42,7 @@ export default function HomePage() {
 
             </div>
             <div className="card-flatmate">
-                <HomeCard />
+                {/* <HomeCard /> */}
             </div>
         </div>
     )

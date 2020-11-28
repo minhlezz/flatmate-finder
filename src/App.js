@@ -11,7 +11,7 @@ import { Container } from 'semantic-ui-react'
 import { AuthProvider } from './context/auth-context';
 import AuthRoute from './utils/AuthRoute';
 import PrivateRoute from './utils/PrivateRoute';
-
+import SingleFlatmate from './pages/singleFlatmate';
 
 export default function App() {
   return (
@@ -24,6 +24,7 @@ export default function App() {
               <AuthRoute exact path="/register" component={RegisterPage} />
               <AuthRoute exact path="/login" component={loginPage} />
               <Route exact path="/flatmate" component={FlatmatePage} />
+              <Route exact path="/flatmate/:ID" component={SingleFlatmate} />
               <Route exact path="/homepage" component={HomePage} />
               <PrivateRoute exact path="/profile" component={ProfilePage} />
             </Switch>

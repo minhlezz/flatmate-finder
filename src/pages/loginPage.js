@@ -44,7 +44,7 @@ function LoginPage(props) {
     return (
         <div className="form-container ">
             <h1>Login</h1>
-            <Form onSubmit={onSubmit} noValidate className={loading ? 'loading' : ''}>
+            <Form onSubmit={onSubmit} className={loading ? 'loading' : ''}>
                 <Form.Input
                     label="Email"
                     placeholder="Email.."
