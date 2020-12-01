@@ -53,7 +53,8 @@ function FlatmatePage() {
                     <div className="container-row">
                         {data.users.map((user) => (
                             <div key={user.id}>
-                                <FlatmateListCard userData={user} />
+                                { user.username &&
+                                    (<FlatmateListCard userData={user} />)}
                             </div>
                         ))}
                     </div>
