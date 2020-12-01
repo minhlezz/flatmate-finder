@@ -3,56 +3,58 @@ import { Divider, Form, Input, Label } from 'semantic-ui-react';
 
 function FlatmateDetailInfor(props) {
 
-
+    const fmData = props.flatmateData;
     return (
         <>
             <Divider />
             <Form className="mr-1rem">
-                <h1>Headings</h1>
+                { fmData.getUser.headline? <h1>{fmData.getUser.headline}</h1> :
+                <h1>Title</h1>}
+
                 <Form.Group>
-                    <Form.Field className="input-unborder">
-                        <label>Budget/month</label>
+                    <Form.Field className="input-unborder" inline>
+                        <Label>Budget/month</Label>
                         <Input
-                            disabled
-                            value='2222'
+                            readOnly
                             placeholder='Budget per month'
                             name="budget"
+                            defaultValue={'$'+fmData.getUser.budget}
                         />
                     </Form.Field>
-                    <Form.Field className="input-unborder"
-                    >
-                        <label>Mobile</label>
+                    <Form.Field className="input-unborder" inline>
+                        <Label>Mobile</Label>
                         <Input
-                            disabled
-                            value='09xxx'
+                            readOnly
                             name="mobile"
+                            defaultValue={fmData.getUser.mobile?fmData.getUser.mobile:'' }
                         />
                     </Form.Field>
                 </Form.Group>
 
                 <Form.Group>
-                    <Form.Field className="input-unborder">
-                        <label>Minimum Stay</label>
+                    <Form.Field className="input-unborder" inline>
+                        <Label>Minimum Stay</Label>
                         <Input
-                            disabled
+                            readOnly
                             placeholder='Minimum Stay'
                             name="minStay"
-                            value='1 month'
+                            defaultValue={fmData.getUser.minStay}
                         />
                     </Form.Field>
-                    <Form.Field className="input-unborder">
-                        <label>Move In Date</label>
+                    <Form.Field className="input-unborder" inline>
+                        <Label>Move In Date</Label>
                         <Input
-                            disabled
+                            readOnly
                             placeholder='Move In Date'
                             name="moveInDate"
+                            defaultValue={fmData.getUser.moveInDate}
                         />
                     </Form.Field>
                 </Form.Group>
                 <Form.Field className="input-unborder" inline>
                     <Label>Location</Label>
                     <Input
-                        disabled
+                        readOnly
                         value='City/address/street'
                         name="location"
                     />
@@ -61,10 +63,10 @@ function FlatmateDetailInfor(props) {
                 <h3>Description</h3>
                 <Form.Field className="input-unborder">
                     <Form.TextArea
-                        disabled
+                        readOnly
                         placeholder='Description'
                         name="description"
-                        value='Just looking for a place to work remotely and not be bothered... east maintenance, don’t need much.'
+                        defaultValue={fmData.getUser.aboutMe}
                     />
                 </Form.Field>
 
@@ -74,69 +76,69 @@ function FlatmateDetailInfor(props) {
                 <div className="container-row-unwrap">
                     <div className='container-column'>
                         <Form.Field className="input-unborder" inline>
-                            <label>Cleanliness</label>
+                            <Label>Cleanliness</Label>
                             <Input
-                                disabled
+                                readOnly
                                 name="cleanliness"
-                                value='cleanliness'
+                                defaultValue={fmData.getUser.cleanliness}
                             />
                         </Form.Field>
                         <Form.Field className="input-unborder" inline>
-                            <label>OvernightGuests</label>
+                            <Label>OvernightGuests</Label>
                             <Input
-                                disabled
+                                readOnly
                                 name="overnightGuests"
-                                value='overnightGuests'
+                                defaultValue={fmData.getUser.overnightGuests}
                             />
                         </Form.Field>
                         <Form.Field className="input-unborder" inline>
-                            <label>Party Habits</label>
+                            <Label>Party Habits</Label>
                             <Input
-                                disabled
+                                readOnly
                                 name="partyHabits"
-                                value='partyHabits'
+                                defaultValue={fmData.getUser.partyHabits}
                             />
                         </Form.Field>
                         <Form.Field className="input-unborder" inline>
-                            <label>Smoker</label>
+                            <Label>Smoker</Label>
                             <Input
-                                disabled
+                                readOnly
                                 name="Smoker"
-                                value='Smoker'
+                                defaultValue={fmData.getUser.smoker}
                             />
                         </Form.Field>
                     </div>
                     <div className='container-column'>
                         <Form.Field className="input-unborder" inline>
-                            <label>Get Up</label>
+                            <Label>Get Up</Label>
                             <Input
-                                disabled
+                                readOnly
                                 name="getUp"
-                                value='getUp'
+                                defaultValue={fmData.getUser.getUp}
                             />
                         </Form.Field>
                         <Form.Field className="input-unborder" inline>
-                            <label>Go To Bed</label>
+                            <Label>Go To Bed</Label>
                             <Input
-                                disabled
+                                readOnly
                                 name="goToBed"
-                                value='goToBed'
+                                defaultValue={fmData.getUser.goToBed}
                             />
                         </Form.Field>
                         <Form.Field className="input-unborder" inline>
-                            <label>Work Schedule</label>
+                            <Label>Work Schedule</Label>
                             <Input
-                                disabled
+                                readOnly
                                 name="workSchedule"
-                                value='workSchedule'
+                                defaultValue={fmData.getUser.workSchedule}
                             />
                         </Form.Field>
                         <Form.Field className="input-unborder" inline>
-                            <label>Occupation</label>
+                            <Label>Occupation</Label>
                             <Input
-                                disabled
+                                readOnly
                                 name="occupation"
-                                value='occupation'
+                                defaultValue={fmData.getUser.occupation}
                             />
                         </Form.Field>
                     </div>
@@ -144,9 +146,9 @@ function FlatmateDetailInfor(props) {
                 <Divider />
                 <h3>Pets Owner</h3>
                 <Form.Field className="input-unborder" inline>
-                    <label>Pets</label>
+                    <Label>Pets</Label>
                     <Input
-                        disabled
+                        readOnly
                         name="Pets"
                         value='Dogs,Cats'
                     />

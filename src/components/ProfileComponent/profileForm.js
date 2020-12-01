@@ -4,6 +4,7 @@ import { gql, useMutation, useQuery } from '@apollo/client';
 import { Spinner } from 'react-bootstrap';
 import { AuthContext } from '../../context/auth-context';
 import { GET_USER } from '../../utils/graphql';
+import { withRouter } from 'react-router-dom';
 
 const UPDATE_USER = gql`
     mutation UpdateUser(
@@ -44,18 +45,28 @@ function ProfileForm(props) {
     const userData = data;
 
     const onChange = (e) => {
-        setValues({ ...values, [e.target.name]: e.target.value });
+        setValues({
+            ...values,
+            [e.target.name]: e.target.value,
+
+        });
+
     };
-    const onSubmit = (e) => {
-        e.preventDefault()
+    console.log(props);
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        values.age = parseInt(values.age);
         updateData({
-            update(cache,result) {
+            update(_, result) {
                 console.log(result);
+                props.history.push(`/flatmate/${userData.getUser.id}`);
+
             },
             variables: {
                 id: userData.getUser.id,
                 ...values
             }
+
         });
     }
 
@@ -80,11 +91,12 @@ function ProfileForm(props) {
                         </Form.Field>
                         <Form.Field>
                             <label>User Name</label>
-                            <input placeholder='Mobile Phone'
+                            <input placeholder='Username '
                                 disabled={false}
                                 name="username"
                                 defaultValue={userData.getUser.username}
                                 onChange={onChange}
+                                required
                             />
                         </Form.Field>
                         <Form.Field>
@@ -99,10 +111,12 @@ function ProfileForm(props) {
                         <Form.Field>
                             <label>Age</label>
                             <input placeholder='Age'
+                                type='number'
                                 disabled={false}
                                 name="age"
                                 defaultValue={userData.getUser.age}
                                 onChange={onChange}
+                                required
                             />
                         </Form.Field>
                         <Form.Field>
@@ -129,4 +143,4 @@ function ProfileForm(props) {
 
 }
 
-export default ProfileForm;
+export default withRouter(ProfileForm);
