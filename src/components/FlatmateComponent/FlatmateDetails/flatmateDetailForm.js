@@ -17,7 +17,6 @@ function FlatmateDetailForm(props) {
         props.onEdit()
     }
     const fmData = props.flatmateData;
-    console.log(fmData);
     const [values, setValues] = useState({});
     const [fmUpdateInfor] = useMutation(FM_UPDATE_INFOR);
 
@@ -40,7 +39,7 @@ function FlatmateDetailForm(props) {
                 ...values,
                 budget: parseFloat(values.budget)
             },
-            
+
         })
         console.log(fmData.getUser.budget);
 
@@ -79,6 +78,7 @@ function FlatmateDetailForm(props) {
                             type='number'
                             name="budget"
                             onChange={onChange}
+                            required
                         />
                     </Form.Field>
                     <h3>Duration</h3>
@@ -100,24 +100,6 @@ function FlatmateDetailForm(props) {
                             onChange={onChange}
                         />
                     </Form.Group>
-                    <h3>Location</h3>
-                    <Form.Group>
-                        <Form.Field
-                            inline
-                            control={Select}
-                            label='Province'
-                            options={options}
-                            placeholder='Province'
-                        />
-                        <Form.Field
-                            inline
-                            control={Select}
-                            label='City'
-                            options={options}
-                            placeholder='City'
-                        />
-                    </Form.Group>
-
                 </div>
                 <Divider />
                 <div className="form-lists-edit mt-1rem">
@@ -130,6 +112,7 @@ function FlatmateDetailForm(props) {
                         onChange={onChange}
                     />
                 </div>
+
                 <Divider />
                 <div className="form-lists-edit mt-1rem">
                     <h3>Lifestyle</h3>

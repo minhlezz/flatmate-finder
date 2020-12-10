@@ -3,7 +3,7 @@ import gql from "graphql-tag";
 
 export const FM_UPDATE_INFOR = gql`
     mutation UpdateUser(
-        $id: String!,
+        $id: ID!,
         $budget: Float,
         $aboutMe: String,
         $moveInDate: String,
@@ -59,3 +59,37 @@ export const FM_UPDATE_INFOR = gql`
         }
     }
 `
+export const FM_CREATE_LOCATION = gql`
+  mutation CreateLocation(
+          $latitude: Float!, 
+          $longitude: Float!
+          ){
+            createLocation(
+                locationInput: {
+                    latitude: $latitude,
+                    longitude: $longitude,
+                }
+            ){
+                latitude
+                longitude
+                id
+            }
+        }
+`
+export const FM_UPDATE_LOCATION = gql`
+    mutation UpdateLocation(
+        $id: ID!,
+        $latitude: Float,
+        $longitude: Float,
+    ) {
+        updateLocation(
+            id: $id,
+            locationInput: {
+                latitude: $latitude,
+                longitude: $longitude,
+            }) {
+            latitude
+            longitude  
+        }
+    }
+` 

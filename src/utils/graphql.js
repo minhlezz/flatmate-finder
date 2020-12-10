@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 
 export const GET_USER = gql`
-    query getUser($id: String!) {
+    query getUser($id: ID!) {
         getUser(id: $id) {
             id,
             email,
@@ -25,6 +25,14 @@ export const ALL_USERS = gql`
             moveInDate
             age
             mobile
+            location {
+                latitude
+                longitude
+                    user {
+                        username
+                        
+                    }
+            }
     }
 }
 `
@@ -32,7 +40,7 @@ export const ALL_USERS = gql`
 
 
 export const FM_USERINFOR = gql`
-  query getUser($id: String!) {
+  query getUser($id: ID!) {
         getUser(id: $id) {
             id,
             budget
@@ -50,6 +58,22 @@ export const FM_USERINFOR = gql`
             workSchedule
             occupation
             pet
+            location{
+                id
+                latitude
+                longitude
+            }
+
+        }
+    } 
+`
+
+export const FM_GET_LOCATION = gql`
+      query GetLocation($id: ID!) {
+        getLocation(id: $id) {
+            id,
+            latitude,
+            longitude
 
         }
     } 

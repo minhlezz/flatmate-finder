@@ -16,9 +16,8 @@ function FlatmateDetailInfor(props) {
                         <Label>Budget/month</Label>
                         <Input
                             readOnly
-                            placeholder='Budget per month'
                             name="budget"
-                            defaultValue={'$'+fmData.getUser.budget}
+                            defaultValue={fmData.getUser.budget? ('$'+fmData.getUser.budget): ''}
                         />
                     </Form.Field>
                     <Form.Field className="input-unborder" inline>
@@ -31,7 +30,7 @@ function FlatmateDetailInfor(props) {
                     </Form.Field>
                 </Form.Group>
 
-                <Form.Group>
+                <Form.Group >
                     <Form.Field className="input-unborder" inline>
                         <Label>Minimum Stay</Label>
                         <Input
@@ -51,14 +50,6 @@ function FlatmateDetailInfor(props) {
                         />
                     </Form.Field>
                 </Form.Group>
-                <Form.Field className="input-unborder" inline>
-                    <Label>Location</Label>
-                    <Input
-                        readOnly
-                        value='City/address/street'
-                        name="location"
-                    />
-                </Form.Field>
                 <Divider />
                 <h3>Description</h3>
                 <Form.Field className="input-unborder">
