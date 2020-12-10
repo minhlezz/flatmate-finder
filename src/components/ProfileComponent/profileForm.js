@@ -8,7 +8,7 @@ import { withRouter } from 'react-router-dom';
 
 const UPDATE_USER = gql`
     mutation UpdateUser(
-        $id: String!,
+        $id: ID!,
         $username: String,
         $mobile: String,
         $age: Int,
@@ -52,13 +52,11 @@ function ProfileForm(props) {
         });
 
     };
-    console.log(props);
     const onSubmit = async (e) => {
         e.preventDefault();
         values.age = parseInt(values.age);
         updateData({
             update(_, result) {
-                console.log(result);
                 props.history.push(`/flatmate/${userData.getUser.id}`);
 
             },

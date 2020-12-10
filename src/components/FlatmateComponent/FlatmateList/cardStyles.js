@@ -2,11 +2,12 @@
 
 const cardHFStyles = ({
     root : {
-        height: '20rem',
-        width: '55rem',
+        height: '15rem',
+        width: '50rem',
         display: 'flex',
         flexDirection: 'row',
-        margin: '2rem',
+        margin: '1rem',
+        border:'none'
     },
 
     body: {
@@ -22,8 +23,8 @@ const cardHFStyles = ({
     },
 
     image: {
-        width: '18rem',
-        height: '18rem',
+        width: '12rem',
+        height: '12rem',
         borderRadius: '10px',
         margin:'1rem'
     },
