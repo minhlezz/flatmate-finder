@@ -135,3 +135,18 @@ body {
   width: 10rem !important;
   height: 10rem !important;
 }
+
+/**Margin */
+
+/**Background */
+.bg-gray {
+  background-color: rgb(240, 240, 240);
+}
+.bg-darklight {
+  height: 70vh;
+  padding: 50px;
+}
+/**Text */
+
+
+

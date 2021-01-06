@@ -92,4 +92,22 @@ export const FM_UPDATE_LOCATION = gql`
             longitude  
         }
     }
-` 
+`
+
+export const SEND_MESSAGE = gql`
+    mutation SendMessage(
+        $receiver: String!,
+        $content: String!
+    ) {
+        sendMessage(
+            receiver: $receiver,
+            content: $content
+        ) {
+            id
+            sender
+            receiver
+            content
+            createdAt
+        }
+    }
+`

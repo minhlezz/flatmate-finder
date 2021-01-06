@@ -28,7 +28,7 @@ function LoginPage(props) {
         update(_, { data: { login: userData } }) {
             console.log(userData);
             context.login(userData)
-            props.history.push('/flatmate');
+            window.location.href = '/';
         },
         onError(err) {
             console.log(err.graphQLErrors[0].extensions.exception.errors);
