@@ -1,0 +1,63 @@
+
+
+.info-text {
+    color: rgb(0, 0, 0, 0.5);
+    text-align: center;
+    margin-bottom: 0.5rem !important;
+}
+
+.message-user-list {
+    height: 50vh;
+    width: 20rem;
+    margin-right: 1rem;
+}
+
+
+.user-list {
+    padding: 2px 2px 2px 4px;
+    margin: 0 0.5rem 1rem 1rem;
+}
+
+.user-list div {
+    height: 60px;
+}
+
+.user-selected :hover {
+    background-color: rgb(240, 240, 240);
+}
+.user-list p {
+    margin: 0.5rem 0.5rem 0 1rem;
+}
+
+
+.message-content {
+    display: flex;
+    flex-direction: column-reverse;
+    height: 50vh;
+    width: 50rem;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+.message-content::-webkit-scrollbar{
+    display: none;
+}
+
+.message-content-ui {
+    display: flex;
+    margin-bottom: 0.5rem;
+}
+
+.message-content-ui div {
+    display: flex;
+    height: 40px;
+    align-items: center;
+    border-radius: 10px !important;
+    padding: 10px 10px 10px 10px;
+
+}
+
+.message-input::placeholder {
+    color: rgb(0, 0, 0, 0.5);
+}
+

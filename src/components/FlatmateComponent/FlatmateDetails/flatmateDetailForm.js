@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { Form, Button, Divider, Select, Checkbox, Radio, Input, TextArea } from 'semantic-ui-react';
+import { Form, Button, Divider, Select, Checkbox, TextArea } from 'semantic-ui-react';
 import '../../../styles/flatmate.css'
 import { FM_UPDATE_INFOR } from '../../../utils/mutation';
 import { selectData } from '../../../data/selectData';

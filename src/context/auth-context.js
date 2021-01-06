@@ -8,7 +8,8 @@ const initialState = {
 
 if (localStorage.getItem('jwtToken')) {
     const decodedToken = jwtDecode(localStorage.getItem('jwtToken'));
-    if (decodedToken.exp * 1000 < Date.now()) {
+    const expiresAt = new Date(decodedToken.exp * 1000);
+    if (expiresAt < Date.now()) {
         localStorage.removeItem('jwtToken');
     } else {
         initialState.user = decodedToken;
@@ -18,7 +19,8 @@ if (localStorage.getItem('jwtToken')) {
 const AuthContext = createContext({
     user: null,
     login: (userData) => { },
-    logout: () => { },
+    logout: () => { 
+    },
 });
 
 const authReducer = (state, action) => {
@@ -54,6 +56,8 @@ const AuthProvider = (props) => {
         dispatch({
             type: 'LOGOUT'
         })
+        window.location.href = '/login'
+
     }
 
     return (

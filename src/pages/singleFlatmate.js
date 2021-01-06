@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import FlatmateDetailForm from '../components/FlatmateComponent/FlatmateDetails/flatmateDetailForm';
 import FlatmateDetailCard from '../components/FlatmateComponent/FlatmateDetails/flatmateDetailCard';
-import { Button, Divider } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 import FlatmateDetailInfor from '../components/FlatmateComponent/FlatmateDetails/flatmateDetailInfor';
 import { FM_USERINFOR } from '../utils/graphql';
 import { useQuery } from '@apollo/client';

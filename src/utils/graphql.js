@@ -35,7 +35,7 @@ export const ALL_USERS = gql`
             }
     }
 }
-`
+`;
 
 
 
@@ -66,7 +66,7 @@ export const FM_USERINFOR = gql`
 
         }
     } 
-`
+`;
 
 export const FM_GET_LOCATION = gql`
       query GetLocation($id: ID!) {
@@ -77,4 +77,29 @@ export const FM_GET_LOCATION = gql`
 
         }
     } 
+`;
+
+export const GET_USERS_MESSAGE = gql`
+    query Users {
+        users {
+            id
+            email
+            username
+            latestMessage {
+                id
+                sender
+                receiver
+                content
+                createdAt
+            }
+        }
+    }
+`;
+
+export const GET_MESSAGES = gql`
+    query getMessages($sender: String!) {
+        getMessages(sender: $sender) {
+            id sender receiver content createdAt
+        }
+    }
 `

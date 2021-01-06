@@ -12,26 +12,35 @@ import { AuthProvider } from './context/auth-context';
 import AuthRoute from './utils/AuthRoute';
 import PrivateRoute from './utils/PrivateRoute';
 import SingleFlatmate from './pages/singleFlatmate';
+import Messages from './pages/Messages';
+import { MessageProvider } from './context/message-context';
+import ApolloProvider from './ApolloProvider';
 
 export default function App() {
   return (
-    <AuthProvider>
-      <BrowserRouter>
-        <Container fluid>
-          <Navbar />
-          <main className="main-content">
-            <Switch>
-              <AuthRoute exact path="/register" component={RegisterPage} />
-              <AuthRoute exact path="/login" component={loginPage} />
-              <Route exact path="/flatmate" component={FlatmatePage} />
-              <Route exact path="/flatmate/:ID" component={SingleFlatmate} />
-              <Route exact path="/homepage" component={HomePage} />
-              <PrivateRoute exact path="/profile" component={ProfilePage} />
-            </Switch>
-          </main>
-        </Container>
-      </BrowserRouter>
-    </AuthProvider>
+    <ApolloProvider>
+      <AuthProvider>
+        <MessageProvider>
+          <BrowserRouter>
+            <Container fluid>
+              <Navbar />
+              <main className="main-content">
+                <Switch>
+                  <AuthRoute exact path="/register" component={RegisterPage} />
+                  <AuthRoute exact path="/login" component={loginPage} />
+                  <Route exact path="/flatmate" component={FlatmatePage} />
+                  <Route exact path="/flatmate/:ID" component={SingleFlatmate} />
+                  <Route exact path="/homepage" component={HomePage} />
+                  <PrivateRoute exact path="/profile" component={ProfilePage} />
+                  <PrivateRoute exact path="/messages" component={Messages} />
+
+                </Switch>
+              </main>
+            </Container>
+          </BrowserRouter>
+        </MessageProvider>
+      </AuthProvider>
+    </ApolloProvider>
   )
 }
 

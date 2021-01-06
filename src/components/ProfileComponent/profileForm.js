@@ -39,7 +39,7 @@ function ProfileForm(props) {
     const { loading, error, data } = useQuery(GET_USER, {
         variables: { id: user.userId }
     });
-    const [updateData] = useMutation(UPDATE_USER);
+    const [updateUser] = useMutation(UPDATE_USER);
 
     if (error) return <h2>Error :!!:</h2>
     const userData = data;
@@ -52,18 +52,19 @@ function ProfileForm(props) {
         });
 
     };
+
     const onSubmit = async (e) => {
         e.preventDefault();
         values.age = parseInt(values.age);
-        updateData({
-            update(_, result) {
-                props.history.push(`/flatmate/${userData.getUser.id}`);
-
-            },
+        updateUser({
             variables: {
                 id: userData.getUser.id,
                 ...values
-            }
+            },
+            update(_, result) {
+                props.history.push(`/flatmate/${userData.getUser.id}`);
+            },
+
 
         });
     }
