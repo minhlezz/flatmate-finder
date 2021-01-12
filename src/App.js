@@ -4,7 +4,7 @@ import './App.css';
 import Navbar from './components/Navigation/nav-bar';
 import FlatmatePage from './pages/flatmate';
 import ProfilePage from './pages/Profile';
-import HomePage from './pages/Home';
+import HouseHold from './pages/houseHold';
 import RegisterPage from './pages/registerPage';
 import loginPage from './pages/loginPage';
 import { Container } from 'semantic-ui-react'
@@ -15,6 +15,7 @@ import SingleFlatmate from './pages/singleFlatmate';
 import Messages from './pages/Messages';
 import { MessageProvider } from './context/message-context';
 import ApolloProvider from './ApolloProvider';
+import HouseHoldDetail from './components/HouseHoldComponent/houseHoldDetail';
 
 export default function App() {
   return (
@@ -30,7 +31,8 @@ export default function App() {
                   <AuthRoute exact path="/login" component={loginPage} />
                   <Route exact path="/flatmate" component={FlatmatePage} />
                   <Route exact path="/flatmate/:ID" component={SingleFlatmate} />
-                  <Route exact path="/homepage" component={HomePage} />
+                  <Route exact path="/household" component={HouseHold} />
+                  <Route exact path="/household/:ID" component={HouseHoldDetail} />
                   <PrivateRoute exact path="/profile" component={ProfilePage} />
                   <PrivateRoute exact path="/messages" component={Messages} />
 

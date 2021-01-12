@@ -15,7 +15,7 @@ function Navbar() {
                     {!user && (<NavLink to='/login' className='menu-bars'>
                         <FaIcons.FaUser />
                     </NavLink>)}
-                    <NavLink to='/homepage' className='menu-bars'>
+                    <NavLink to='/household' className='menu-bars'>
                         <AiIcons.AiFillHome />
                     </NavLink>
                     <NavLink to='/flatmate' className='menu-bars'>

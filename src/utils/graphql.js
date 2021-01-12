@@ -103,3 +103,18 @@ export const GET_MESSAGES = gql`
         }
     }
 `
+
+/**Household */
+
+export const GET_HOUSEHOLDS = gql`
+    query GetHouseHolds {
+        getHouseHolds {
+            houseTitle
+            houseDescription
+            area
+            bath
+            bed
+            budget
+          }
+    }
+`

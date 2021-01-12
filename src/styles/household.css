@@ -1,0 +1,22 @@
+
+.card-main {
+    height: 250px;
+    width: 750px;
+    margin-bottom: 10px;
+}
+.card-content {
+    display: flex;
+    flex-direction: row;
+}
+
+.card-owner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.household-adding {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}

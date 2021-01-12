@@ -111,3 +111,32 @@ export const SEND_MESSAGE = gql`
         }
     }
 `
+/**Household */
+export const CREATE_HOUSEHOLD = gql`
+    mutation CreateHousehold(
+        $houseTitle: String!,
+        $houseDescription: String!,
+        $area: Float!,
+        $budget: Float!,
+        $bath: Int!,
+        $bed: Int!
+    ) {
+        createHouseHold(
+            houseHoldInput: {
+                houseTitle: $houseTitle,
+                houseDescription: $houseDescription,
+                area: $area,
+                budget: $budget,
+                bath: $bath,
+                bed: $bed
+            }) {
+            id
+            houseTitle
+            houseDescription
+            area
+            budget
+            bath
+            bed
+        }
+    }
+`

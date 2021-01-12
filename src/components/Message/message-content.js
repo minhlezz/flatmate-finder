@@ -31,7 +31,6 @@ function MessageContent() {
             getMessages({ variables: { sender: selectedUser.email } })
         }
     }, [selectedUser])
-
     useEffect(() => {
         if (messagesData) {
             dispatch({
