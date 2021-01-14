@@ -20,3 +20,60 @@
     flex-direction: row;
     align-items: baseline;
 }
+
+/* Household-detail style */
+.household-overview {
+    display: flex;
+    flex-direction: column;
+}
+
+.household-overview div {
+    display: flex;
+    flex-direction: row;
+    margin: 5px 10px 5px 20px ;
+    align-items: baseline;
+}
+
+/* household detail styles */
+.household-detail {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.household-detail div {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    align-items: center;
+
+}
+
+/* household position */
+.household-position {
+    
+}
+
+.household-position div {
+    margin: 10px;
+}
+
+/* household maps */
+.maps {
+    height: 250px !important;
+    max-width: 450px !important;
+}
+
+/* household owner */
+.household-owner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.household-owner div {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+

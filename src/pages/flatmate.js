@@ -53,7 +53,7 @@ function FlatmatePage() {
                             </Button>
 
                         </div>
-                        <div className="container-row-unwrap">
+                        <div className="container-row">
                             <div className="container-column">
                                 {data.users.map((user) => (
                                     <div key={user.id}>
@@ -62,7 +62,13 @@ function FlatmatePage() {
                                     </div>
                                 ))}
                             </div>
-                            <div className="container-column">
+                            <div className="container-column"
+                                style={{
+                                    marginTop:"10px",
+                                    width: "500px",
+                                    height: "350px",
+                                }}
+                            >
                                 <h1>Location</h1>
                                 <LocationAPI userData={data} />
                             </div>

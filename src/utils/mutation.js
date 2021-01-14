@@ -140,3 +140,54 @@ export const CREATE_HOUSEHOLD = gql`
         }
     }
 `
+
+export const UPDATE_HOUSEHOLD = gql`
+    mutation UpdateHouseHold(
+        $id: ID!,
+        $houseTitle: String
+        $houseDescription: String
+        $buildingType: String
+        $area: Float
+        $budget: Float
+        $bath: Int
+        $bed: Int
+        $houseHoldSex: Gender
+        $airConditioning: Boolean
+        $internet: Boolean
+        $parking: Boolean
+        $privateBathroom: Boolean
+        $yard: Boolean
+    ) {
+        updateHouseHold(
+            id: $id,
+            houseHoldInput: {
+                houseTitle: $houseTitle
+                houseDescription: $houseDescription
+                buildingType: $buildingType
+                area: $area
+                budget: $budget
+                bath: $bath
+                bed: $bed
+                houseHoldSex: $houseHoldSex
+                airConditioning: $airConditioning
+                internet: $internet
+                parking: $parking
+                privateBathroom: $privateBathroom
+                yard: $yard
+            }) {
+                houseTitle
+                houseDescription
+                buildingType
+                area
+                budget
+                bath
+                bed
+                houseHoldSex
+                airConditioning
+                internet
+                parking
+                privateBathroom
+                yard
+        }
+} 
+`

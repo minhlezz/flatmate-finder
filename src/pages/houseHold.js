@@ -13,6 +13,7 @@ function HouseHold() {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
     const { loading: houseHoldLoading, data: houseHoldData, error: queryError } = useQuery(GET_HOUSEHOLDS);
     if (queryError) {
         return <p>Error happening in query data</p>
@@ -25,6 +26,8 @@ function HouseHold() {
     let houseHoldMarkUp;
     if (households.length > 0) {
         houseHoldMarkUp = households.map((house, index) => {
+            const houseHoldID = house.id;
+            const flatmateID = house.owner.id;
             return (
                 <Fragment key={index}>
                     <Card className='card-main'>
@@ -38,7 +41,7 @@ function HouseHold() {
                             />
                             <Card.Body>
                                 <Card.Subtitle>
-                                    {house.houseTitle? house.houseTitle : 'aA' }
+                                    {house.houseTitle ? house.houseTitle : 'aA'}
                                 </Card.Subtitle>
                                 <small className="text-muted">address- number Number street Street, city City,</small>
                                 <p>
@@ -65,7 +68,7 @@ function HouseHold() {
                                 <p>
                                     {house.houseDescription ? house.houseDescription : 'aA'}
                                 </p>
-                                <NavLink to='/flatmate' >
+                                <NavLink to={`/household/${houseHoldID}`} >
                                     <Icon.Group size='large'>
                                         <Icon loading size='big' name='circle notch'
                                             inverted
@@ -88,11 +91,14 @@ function HouseHold() {
                                             margin: '5px'
                                         }}
                                     roundedCircle />
-                                <Icon
-                                    inverted
-                                    color='black'
-                                    size='big'
-                                    name='address card outline' />
+                                <NavLink to={`/flatmate/${flatmateID}`} >
+                                    <Icon
+                                        inverted
+                                        color='black'
+                                        size='big'
+                                        name='address card outline' />
+                                </NavLink>
+
                                 <Icon
                                     inverted
                                     color='black'

@@ -3,10 +3,10 @@
 const cardHFStyles = ({
     root : {
         height: '15rem',
-        width: '50rem',
+        width: '600px',
         display: 'flex',
         flexDirection: 'row',
-        margin: '1rem',
+        margin: '0.5rem',
         border:'none'
     },
 

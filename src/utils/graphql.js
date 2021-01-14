@@ -105,16 +105,49 @@ export const GET_MESSAGES = gql`
 `
 
 /**Household */
-
-export const GET_HOUSEHOLDS = gql`
-    query GetHouseHolds {
-        getHouseHolds {
+export const GET_HOUSEHOLD = gql`
+    query GetHouseHold($id: ID!) {
+        getHouseHold(id: $id) {
+            id
             houseTitle
             houseDescription
             area
             bath
             bed
             budget
+            houseHoldSex
+            buildingType
+            airConditioning
+            internet
+            parking
+            privateBathroom
+            yard
+            owner {
+                id
+                username
+                gender
+                age
+            }
+        }
+    }
+`
+
+export const GET_HOUSEHOLDS = gql`
+    query GetHouseHolds {
+        getHouseHolds {
+            id
+            houseTitle
+            houseDescription
+            area
+            bath
+            bed
+            budget
+            owner {
+                id
+                username
+                gender
+                age
+            }
           }
     }
 `

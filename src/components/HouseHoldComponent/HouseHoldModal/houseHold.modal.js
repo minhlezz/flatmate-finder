@@ -12,6 +12,7 @@ function HouseHoldModal(props) {
         area: '',
         budget: '',
         houseDescription: '',
+        houseHoldSex: ''
     });
 
     const [createHouseHold, { loading: newHouseLoading }] = useMutation(CREATE_HOUSEHOLD, {
@@ -32,7 +33,6 @@ function HouseHoldModal(props) {
     };
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log(values);
         values.area = parseFloat(values.area);
         values.budget = parseFloat(values.budget);
         values.bath = parseInt(values.bath);
@@ -41,7 +41,6 @@ function HouseHoldModal(props) {
         createHouseHold({
             variables: values,
             update: (cache, { data: { createHouseHold } }) => {
-                console.log(createHouseHold);
                 cache.modify({
                     fields: {
                         getHouseHolds(existings = []) {

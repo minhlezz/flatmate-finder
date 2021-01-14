@@ -15,7 +15,7 @@ import SingleFlatmate from './pages/singleFlatmate';
 import Messages from './pages/Messages';
 import { MessageProvider } from './context/message-context';
 import ApolloProvider from './ApolloProvider';
-import HouseHoldDetail from './components/HouseHoldComponent/houseHoldDetail';
+import HouseHoldDetail from './components/HouseHoldComponent/HouseHoldDetail/houseHoldDetail';
 
 export default function App() {
   return (

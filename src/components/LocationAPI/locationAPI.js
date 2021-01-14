@@ -34,7 +34,7 @@ function LocationAPI(props) {
                 zoom={zoom}
                 scrollWheelZoom={false}
                 whenCreated={(map => setInterval(() => { map.invalidateSize() }, 100))}
-                style={{ width: '100%', height: '100%' }}>
+                style={{ maxWidth: '100%', height: '100%' }}>
                 <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     attribution='&copy;<a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
