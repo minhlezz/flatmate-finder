@@ -1,5 +1,5 @@
 import React from 'react';
-import { Divider, Label, Checkbox } from 'semantic-ui-react';
+import { Divider, Label } from 'semantic-ui-react';
 import LocationAPI from '../../LocationAPI/locationAPI';
 import { Col } from 'react-bootstrap';
 import '../../../styles/household.css'

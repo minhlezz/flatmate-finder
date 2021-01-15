@@ -4,6 +4,8 @@ import { Modal, Button, Form, Col, Row, Spinner } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
 import { UPDATE_HOUSEHOLD } from '../../../utils/mutation';
 import { GET_HOUSEHOLD } from '../../../utils/graphql';
+import { addressData } from '../../../data/address';
+
 function HouseholdDetailModal(props) {
     const {
         id,
@@ -21,7 +23,6 @@ function HouseholdDetailModal(props) {
         bath: bath ? bath : '',
         bed: bed ? bed : '',
     });
-    const [isChecked, setIsChecked] = useState({});
     const onChange = (e) => {
         const target = e.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -32,13 +33,6 @@ function HouseholdDetailModal(props) {
             [name]: value
         });
     };
-
-    // const onChangeChecked = (e) => {
-    //     setIsChecked({
-    //         ...isChecked,
-    //         [e.target.name]: e.target.checked
-    //     });
-    // };
 
     /**Connect to GraphQL */
     const [updateHouseHold, { loading: updateLoading, error: updateError }] = useMutation(UPDATE_HOUSEHOLD, {
@@ -57,34 +51,38 @@ function HouseholdDetailModal(props) {
             variables: {
                 id: houseHoldID,
                 ...values,
-                ...isChecked
             },
-            update(_, result) {
-                console.log(result);
+            refetchQueries: [{
+                query: GET_HOUSEHOLD,
+                variables: { id: houseHoldID }
+            }],
+            update: (cache, { data: { updateHouseHold } }) => {
+                cache.modify({
+                    id: cache.identify(id),
+                    fields: {
+                        getHousehold(existingHHRefs = []) {
+                            const newHHRef = cache.writeQuery({
+                                data: updateHouseHold,
+                                query: GET_HOUSEHOLD
+                            });
+
+                            return [
+                                ...existingHHRefs,
+                                newHHRef
+                            ]
+                        }
+                    }
+                });
             }
-            // update: (cache, { data: { updateHouseHold } }) => {
-            //     console.log(updateHouseHold);
-            //     cache.modify({
-            //         fields: {
-            //             getHouseHold(existings = []) {
-            //                 const newUpdateHouseHold = cache.writeQuery({
-            //                     data: updateHouseHold,
-            //                     query: GET_HOUSEHOLD
-            //                 });
-            //                 return [
-            //                     ...existings,
-            //                     newUpdateHouseHold
-            //                 ]
-            //             }
-            //         }
-            //     })
-            // }
         })
         props.handleClose();
     }
 
     if (updateLoading) {
         return <Spinner animation="border" />
+    }
+    if (updateError) {
+        return 'Error'
     }
 
     return (
@@ -118,6 +116,34 @@ function HouseholdDetailModal(props) {
                             />
                         </Col>
                     </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Address</Form.Label>
+                        <Form.Row>
+                            <Col>
+                                <Form.Control as="select" custom>
+                                    {addressData.provinceCity.map((pc) => {
+                                        return (
+                                            <option key={pc.key} value={pc.value}>
+                                                {pc.label}
+                                            </option>
+                                        )
+                                    })}
+                                </Form.Control>
+                            </Col>
+                            <Col>
+                                <Form.Control as="select" custom>
+                                    {addressData.districtCity.map((dc) => {
+                                        return (
+                                            <option key={dc.key} value={dc.value}>
+                                                {dc.label}
+                                            </option>
+                                        )
+                                    })}
+                                </Form.Control>
+                            </Col>
+                        </Form.Row>
+                    </Form.Group>
+
                     <Form.Group as={Row} >
                         <Form.Label column sm="3">Building Type</Form.Label>
                         <Col sm="9">

@@ -16,6 +16,8 @@ import Messages from './pages/Messages';
 import { MessageProvider } from './context/message-context';
 import ApolloProvider from './ApolloProvider';
 import HouseHoldDetail from './components/HouseHoldComponent/HouseHoldDetail/houseHoldDetail';
+import AdminRoute from './utils/AdminRoute';
+import DashBoard from './pages/dashboard';
 
 export default function App() {
   return (
@@ -35,7 +37,7 @@ export default function App() {
                   <Route exact path="/household/:ID" component={HouseHoldDetail} />
                   <PrivateRoute exact path="/profile" component={ProfilePage} />
                   <PrivateRoute exact path="/messages" component={Messages} />
-
+                  <AdminRoute path='/dashboard' component={DashBoard} />
                 </Switch>
               </main>
             </Container>
