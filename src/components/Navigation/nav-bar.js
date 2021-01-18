@@ -8,6 +8,8 @@ import { AuthContext } from '../../context/auth-context';
 
 function Navbar() {
     const { user, logout } = useContext(AuthContext);
+    const admin = 'admin@ad.com';
+
     return (
         <>
             <header>
@@ -15,21 +17,21 @@ function Navbar() {
                     {!user && (<NavLink to='/login' className='menu-bars'>
                         <FaIcons.FaUser />
                     </NavLink>)}
-                    <NavLink to='/household' className='menu-bars'>
+                    {(user && user.email !== admin) && (<NavLink to='/household' className='menu-bars'>
                         <AiIcons.AiFillHome />
-                    </NavLink>
-                    <NavLink to='/flatmate' className='menu-bars'>
+                    </NavLink>)}
+                    {((user && user.email !== admin) && < NavLink to='/flatmate' className='menu-bars'>
                         <IoIcons.IoMdPeople />
-                    </NavLink>
-                    {user && (<NavLink to='/profile' className='menu-bars'>
+                    </NavLink>)}
+                    {(user && user.email !== admin) && (<NavLink to='/profile' className='menu-bars'>
                         <FaIcons.FaRegNewspaper />
                     </NavLink>)}
-                    {user && (<NavLink to='/messages' className='menu-bars'>
+                    {(user && user.email !== admin) && (<NavLink to='/messages' className='menu-bars'>
                         <FaIcons.FaEnvelopeOpenText />
                     </NavLink>)}
-                    <NavLink to='/support' className='menu-bars'>
+                    {/* <NavLink to='/support' className='menu-bars'>
                         <IoIcons.IoMdHelpCircle />
-                    </NavLink>
+                    </NavLink> */}
                     {user && (<NavLink to='#' className='menu-bars exit-icon'>
                         <FaIcons.FaSignOutAlt onClick={logout} />
                     </NavLink>)}

@@ -1,0 +1,24 @@
+
+
+
+.total-number {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.total-number div {
+    margin-bottom: 10px;
+}
+
+.statistic {
+}
+.statistic-user {
+    display: block;
+    border: 1px solid black;
+    margin-right: 30px ;
+}
+
+.statistic-household {
+    display: block;
+    border: 1px solid black;
+}
