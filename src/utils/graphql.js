@@ -151,3 +151,27 @@ export const GET_HOUSEHOLDS = gql`
           }
     }
 `
+
+export const BOTH_QUERY = gql`
+    query BOTH_QUERY {
+        getHouseHolds {
+                id
+                houseTitle
+                area
+                budget
+                districtCityHH
+                provinceCityHH
+                houseHoldSex
+        }
+        users {
+            id
+            email
+            username
+            budget
+            gender
+            age
+            districtCityUser
+            provinceCityUser
+        }
+    }
+`

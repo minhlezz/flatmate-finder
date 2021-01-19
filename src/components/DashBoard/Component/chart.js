@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     VictoryBar,
     VictoryChart,
@@ -8,13 +8,21 @@ import {
 } from 'victory';
 
 
-function Chart() {
+function Chart(props) {
+    const users = props.users;
+    const district = users.map(u => {
+        return u.districtCityUser
+    });
+
     const data = [
         { quarter: 1, earnings: 13000 },
         { quarter: 2, earnings: 16500 },
         { quarter: 3, earnings: 14250 },
-        { quarter: 4, earnings: 19000 }
+        { quarter: 4, earnings: 19000 },
+        { quarter: 5, earnings: 7233 }
     ];
+    
+   
     return (
         <VictoryChart
             domainPadding={20}
@@ -23,8 +31,8 @@ function Chart() {
             <VictoryAxis
                 // tickValues specifies both the number of ticks and where
                 // they are placed on the axis
-                tickValues={[1, 2, 3, 4]}
-                tickFormat={["Quarter 1", "Quarter 2", "Quarter 3", "Quarter 4"]}
+                tickValues={[1, 2, 3, 4, 5]}
+                tickFormat={district}
                 label="Area"
                 style={{
                     axisLabel: { padding: 30 }

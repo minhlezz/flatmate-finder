@@ -1,69 +1,65 @@
 import React from 'react';
-import { Col, Row } from 'react-bootstrap';
-import { Icon, Statistic, Divider, Dropdown } from 'semantic-ui-react';
+import { Col, Row, Spinner, Card } from 'react-bootstrap';
+import { Icon, Statistic, Divider } from 'semantic-ui-react';
 import Chart from './chart';
-
 import './chart.css';
+import TotalUserHouse from './statictis/totalUserHouse';
+import { useQuery } from '@apollo/client'
+import { BOTH_QUERY } from '../../../utils/graphql';
+import { VictoryLine, VictoryChart, VictoryTheme } from 'victory';
 
 function Analysis() {
-    const options = [
-        {
-            key: 'Jenny Hess',
-            text: 'Jenny Hess',
-            value: 'Jenny Hess',
-        },
-        {
-            key: 'Elliot Fu',
-            text: 'Elliot Fu',
-            value: 'Elliot Fu'
-        },
-    ];
+
+    const { loading: dataLoading, data: ansData, error: fetchError } = useQuery(BOTH_QUERY);
+
+    if (dataLoading) return <Spinner animation="border" />;
+    if (fetchError) return <p>error</p>;
+    const { users, getHouseHolds } = ansData
+
     return (
         <>
             {/* Row User Household Statistics */}
             <Row >
-                <Col className="statistic-user " xs={2}>
-                    <Statistic size="small"
-                        floated="right" >
-                        <Statistic.Value>5,550</Statistic.Value>
-                        <Statistic.Label>
-                            <Icon name="users" size="big"
-                                color="orange"
-                                inverted
-                            />
-                            {" Users"}
-                        </Statistic.Label>
-                    </Statistic>
-
-                </Col>
-
-                <Col className="statistic-household" xs={2}>
-                    <Statistic size="small">
-                        <Statistic.Value>3,000</Statistic.Value>
-                        <Statistic.Label>
-                            <Icon name="home" size="big"
-                                color="green"
-                                inverted
-                            />
-                            {"Household"}
-                        </Statistic.Label>
-                    </Statistic>
-                </Col>
+                <TotalUserHouse users={users} getHouseHolds={getHouseHolds} />
             </Row>
             <Divider />
 
             {/* Row Chart Statistics ***************** */}
-            <h3>Budget Average Area</h3>
             <Row>
-                <Col xs={6}>
-                    <span>
-                        <Dropdown
-                            inline
-                            options={options}
-                            defaultValue={options[0].value}
-                        />
-                    </span>
-                    <Chart />
+                <Col xs={4}>
+                    <Card>
+                        <Card.Header>Budget Average</Card.Header>
+                        <Card.Body>
+                            <Chart users={users} />
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col xs={4} >
+                    <Card>
+                        <Card.Header>Line Chart</Card.Header>
+                        <Card.Body>
+                            <VictoryChart
+                                theme={VictoryTheme.material}
+                            >
+                                <VictoryLine
+                                    style={{
+                                        data: { stroke: "#c43a31" },
+                                        parent: { border: "1px solid #ccc" }
+                                    }}
+                                    data={[
+                                        { x: 1, y: 2 },
+                                        { x: 2, y: 3 },
+                                        { x: 3, y: 5 },
+                                        { x: 4, y: 4 },
+                                        { x: 5, y: 7 }
+                                    ]}
+                                    labels={({ datum }) => datum.y}
+
+                                />
+                            </VictoryChart>
+                        </Card.Body>
+                    </Card>
+
                 </Col>
                 <Col xs={3} className="total-number">
                     <Row >
@@ -85,37 +81,18 @@ function Analysis() {
                                 <Icon name="arrow down"
                                     color="red"
                                     size="small" />
-                                3,000
+                                9982
                                 </Statistic.Value>
                             <Statistic.Label>
                                 {"Total Household's Budget"}
                             </Statistic.Label>
                         </Statistic>
                     </Row>
-                    <Row>
-                        <Statistic size="tiny">
-                            <Statistic.Value>
-                                <Icon name="arrow up"
-                                    color="green"
-                                    size="small" />
-                                3,000
-                            </Statistic.Value>
-                            <Statistic.Label>
-                                {"Household"}
-                            </Statistic.Label>
-                        </Statistic>
-                    </Row>
                 </Col>
+
             </Row>
             {/* Row another statictis */}
-            <Row>
-                <Col>
-                    Statictis
-                    Statictis
-                    Statictis
-                    Statictis
-                </Col>
-            </Row>
+      
 
         </>
     )

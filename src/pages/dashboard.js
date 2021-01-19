@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Container } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import SidebarDashboard from '../components/DashBoard/sidebarDB/sidebarDB';
 import '../styles/dashboard.css';
 import {
@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 
 import Analysis from '../components/DashBoard/Component/analysis';
-import ManageUser from '../components/DashBoard/Component/manage-user';
+import ManageData from '../components/DashBoard/Component/manageData';
 
 function DashBoard() {
     return (
@@ -19,10 +19,12 @@ function DashBoard() {
                 <Col xs={2}>
                     <SidebarDashboard />
                 </Col>
-                <Col xs={10}>
+                <Col xs={10}
+
+                >
                     <Switch>
                         <Route path="/dashboard/chart" component={Analysis} />
-                        <Route path="/dashboard/manage" component={ManageUser} />
+                        <Route path="/dashboard/manage" component={ManageData} />
                     </Switch>
                 </Col>
 
