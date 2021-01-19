@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import {
-    Link, useRouteMatch, NavLink
-} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
     Icon,
     Menu,
@@ -56,12 +54,13 @@ function SidebarDashboard() {
                 name='mnguser'
                 active={activeItem.activeItem === 'mnguser'}
                 onClick={handleActive}
-                color='blue'
                 as={Link}
                 to='/dashboard/manage'
             >
                 <Icon name='table'
-                    color='iWhite'
+                    style={{
+                        color: '#fff'
+                    }}
                 />
             </Menu.Item>
         </Sidebar>
