@@ -13,7 +13,9 @@ function ManageData() {
     const { users, getHouseHolds } = dataQuery;
 
     return (
-        <Row>
+        <Row style={{
+            marginBottom: '100px'
+        }}>
             <h2>User Account</h2>
             <ManageUser users={users} />
             <h2>Household</h2>
