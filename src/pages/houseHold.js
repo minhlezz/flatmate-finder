@@ -1,31 +1,39 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Card, Row, Col, Button, Image, Spinner } from 'react-bootstrap';
 import { Icon } from 'semantic-ui-react'
 import '../styles/household.css';
 import { NavLink } from 'react-router-dom';
 import HouseHoldModal from '../components/HouseHoldComponent/HouseHoldModal/houseHold.modal';
-import { GET_HOUSEHOLDS } from '../utils/graphql';
-import { useQuery } from '@apollo/client';
+import { useLazyQuery } from '@apollo/client';
+import HouseFilterModal from '../components/HouseHoldComponent/HouseHoldModal/houseFilter.modal';
+import { HOME_FILTER } from '../utils/graphql';
 
 function HouseHold() {
     const url = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0cMhRaPgqVMdYwCsU8eje4v6gOkj962GL3g&usqp=CAU"
     const avt = "https://noidangsong.vn/files/uploads/fb1735058496563345/1526444239-tt_avatar_small.jpg"
     const [show, setShow] = useState(false);
+    const [filterModal, setFilterModal] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const handleCloseFilterModal = () => setFilterModal(false);
+    const handleShowFilterModal = () => setFilterModal(true);
 
-    const { loading: houseHoldLoading, data: houseHoldData, error: queryError } = useQuery(GET_HOUSEHOLDS);
-    if (queryError) {
-        return <p>Error happening in query data</p>
-    }
 
-    if (houseHoldLoading) {
-        return <Spinner animation='border' />;
-    }
-    const households = houseHoldData.getHouseHolds;
+    const [executeFilter, { data: homeFiltersData, loading: filterLoading }] = useLazyQuery(HOME_FILTER);
+
+    useEffect(() => {
+        //render data at initialize
+        executeFilter();
+    });
+
+    if (filterLoading) return <Spinner animation="border" />
+
+    const homes = homeFiltersData?.homeFilters;
+
     let houseHoldMarkUp;
-    if (households.length > 0) {
-        houseHoldMarkUp = households.map((house, index) => {
+
+    if (homes?.length > 0) {
+        houseHoldMarkUp = homes.map((house, index) => {
             const houseHoldID = house.id;
             const flatmateID = house.owner.id;
             return (
@@ -117,6 +125,8 @@ function HouseHold() {
             )
         })
     }
+
+
     return (
         <Row>
             <Col xs={12} md={8}>
@@ -130,8 +140,24 @@ function HouseHold() {
                     >
                         <Icon name='add' />
                     </Button>
+                    <Button
+                        style={{
+                            marginLeft: '5px'
+                        }}
+                        onClick={handleShowFilterModal}
+                        variant="secondary"
+                    >
+                        <Icon name='filter' />
+                    </Button>
                 </Col>
                 <HouseHoldModal show={show} handleClose={handleClose} />
+                {/* Filtering  */}
+                <HouseFilterModal
+                    filterModal={filterModal}
+                    handleCloseFilterModal={handleCloseFilterModal}
+                    executeFilter={executeFilter}
+                />
+                {/* ////////////////// */}
                 <h3>Finding "..." results</h3>
                 {houseHoldMarkUp}
             </Col>

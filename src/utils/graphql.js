@@ -175,3 +175,58 @@ export const BOTH_QUERY = gql`
         }
     }
 `
+
+//Filter Query
+
+export const HOME_FILTER = gql`
+    query HomeFilters(
+        $buildingType: String
+        $area: Float
+        $budget: Float
+        $bath: Int
+        $bed: Int
+        $houseHoldSex: Gender
+        $airConditioning: Boolean
+        $internet: Boolean
+        $parking: Boolean
+        $privateBathroom: Boolean
+        $yard: Boolean
+    ){
+        homeFilters(
+            filtersInput: {
+                buildingType: $buildingType
+                area: $area
+                budget: $budget
+                bath: $bath
+                bed: $bed
+                houseHoldSex: $houseHoldSex
+                airConditioning: $airConditioning
+                internet: $internet
+                parking: $parking
+                privateBathroom: $privateBathroom
+                yard: $yard
+            }) {
+                id
+                houseTitle
+                houseDescription
+                buildingType
+                area
+                budget
+                bath
+                bed
+                houseHoldSex
+                airConditioning
+                internet
+                parking
+                privateBathroom
+                yard
+                owner {
+                    id
+                    username
+                    gender
+                    age
+                }
+            }
+    }
+`
+
