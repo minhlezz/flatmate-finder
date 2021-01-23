@@ -4,7 +4,6 @@ import {
     VictoryChart,
     VictoryAxis,
     VictoryTheme,
-    VictoryStack
 } from 'victory';
 
 import { Dropdown } from 'semantic-ui-react';
@@ -63,12 +62,16 @@ function FlatmateChart(props) {
             <VictoryChart
                 domainPadding={20}
                 theme={VictoryTheme.material}
+                animate={{
+                    duration: 1000,
+                    onLoad: { duration: 500 }
+                }}
             >
                 <VictoryAxis
                     // tickValues specifies both the number of ticks and where
                     // they are placed on the axis
                     tickValues={[1, 2, 3, 4, 5]}
-                    tickFormat={['Q1','Q2','Q3','Q4','Binh Thanh',]}
+                    tickFormat={['Q1', 'Q2', 'Q3', 'Q4', 'Binh Thanh',]}
 
                 />
                 <VictoryAxis
@@ -80,16 +83,11 @@ function FlatmateChart(props) {
                         axisLabel: { padding: 40 }
                     }}
                 />
-                <VictoryStack
-                   
-                >
-                    <VictoryBar
-                        data={values}
-                        x="quarter"
-                        y="flatmate"
-                    />
-                </VictoryStack>
-
+                <VictoryBar
+                    data={values}
+                    x="quarter"
+                    y="flatmate"
+                />
             </VictoryChart>
         </>
     )

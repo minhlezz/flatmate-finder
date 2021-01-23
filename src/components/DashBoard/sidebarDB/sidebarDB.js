@@ -4,6 +4,7 @@ import {
     Icon,
     Menu,
     Sidebar,
+    Dropdown
 } from 'semantic-ui-react';
 import './sidebar.css';
 
@@ -48,7 +49,16 @@ function SidebarDashboard() {
             >
                 <Icon name='chart bar' />
             </Menu.Item>
-
+            <Menu.Item
+                name='budgetChart'
+                active={activeItem.activeItem === 'budgetChart'}
+                color='blue'
+                onClick={handleActive}
+                as={Link}
+                to='/dashboard/analysis'
+            >
+                <Icon name='chart area' />
+            </Menu.Item>
 
             <Menu.Item
                 name='mnguser'

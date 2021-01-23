@@ -1,5 +1,10 @@
 
-
+.container-analysis {
+    min-height: 180vh ;
+}
+.container-analysis div {
+    margin-bottom: 10px;
+}
 
 .total-number {
     display: flex;
@@ -10,8 +15,7 @@
     margin-bottom: 10px;
 }
 
-.statistic {
-}
+/* .statistic{} */
 .statistic-user {
     display: flex;
     justify-content: center;

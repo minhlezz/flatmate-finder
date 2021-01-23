@@ -10,7 +10,7 @@ import {
 import { Dropdown } from 'semantic-ui-react';
 
 function HouseholdChart(props) {
-  
+    
 
     const year = [
         { quarter: 1, household: 551 },
