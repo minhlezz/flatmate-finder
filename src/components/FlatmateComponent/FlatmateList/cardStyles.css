@@ -1,0 +1,20 @@
+
+
+.fm-card-main {
+    width: 24rem;
+    margin-bottom: 30px;
+}
+
+.card-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.card-contact i {
+    margin-bottom: 5px !important;
+}
+.button-card {
+    display: flex;
+    justify-content: flex-end;
+    
+}

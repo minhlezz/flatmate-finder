@@ -1,12 +1,18 @@
-
-.card-main {
-    height: 250px;
-    width: 750px;
-    margin-bottom: 10px;
-}
-.card-content {
+.card-display{
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.card-main {
+    width: 24rem;
+    margin-bottom: 30px;
+}
+
+.card-content {
+   
 }
 
 .card-owner {
@@ -14,7 +20,6 @@
     flex-direction: column;
     align-items: center;
 }
-
 .household-adding {
     display: flex;
     flex-direction: row;
