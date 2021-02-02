@@ -7,7 +7,6 @@ import ProfilePage from './pages/Profile';
 import HouseHold from './pages/houseHold';
 import RegisterPage from './pages/registerPage';
 import loginPage from './pages/loginPage';
-import { Container } from 'semantic-ui-react'
 import { AuthProvider } from './context/auth-context';
 import AuthRoute from './utils/AuthRoute';
 import PrivateRoute from './utils/PrivateRoute';
@@ -18,6 +17,7 @@ import ApolloProvider from './ApolloProvider';
 import HouseHoldDetail from './components/HouseHoldComponent/HouseHoldDetail/houseHoldDetail';
 import AdminRoute from './utils/AdminRoute';
 import DashBoard from './pages/dashboard';
+import Footer from './pages/footer';
 
 export default function App() {
   return (
@@ -25,7 +25,6 @@ export default function App() {
       <AuthProvider>
         <MessageProvider>
           <BrowserRouter>
-            <Container fluid>
               <Navbar />
               <main className="main-content">
                 <Switch>
@@ -40,7 +39,7 @@ export default function App() {
                   <AdminRoute path='/dashboard' component={DashBoard} />
                 </Switch>
               </main>
-            </Container>
+              <Footer />
           </BrowserRouter>
         </MessageProvider>
       </AuthProvider>

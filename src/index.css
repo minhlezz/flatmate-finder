@@ -66,6 +66,10 @@ body {
   margin-right: 0.5rem;
 }
 
+/* button css */
+.btn-darkgreen {
+  background-color: #417054 !important;
+}
 .search-btn {
   height: 3rem;
   width: 5rem;
@@ -151,4 +155,6 @@ body {
   color: #fff !important;
 }
 
-
+.color-dg {
+  color: #417054 !important;
+}
