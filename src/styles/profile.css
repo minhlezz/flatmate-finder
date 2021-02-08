@@ -1,23 +1,6 @@
-.flex-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-}
-
-.left {
-    display: flex;
-    flex-direction: column;
-}
-
-.right {
-    display: flex;
-    flex-direction: column;
-}
-
 
 
 .content {
-    display: block;
     padding: 0.5rem;
     width: 30rem;
 }

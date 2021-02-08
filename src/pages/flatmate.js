@@ -1,5 +1,5 @@
 import React, { Fragment, useContext } from 'react';
-import { Row, Spinner } from 'react-bootstrap';
+import { Container, Row, Spinner } from 'react-bootstrap';
 import '../styles/flatmate.css'
 import { useQuery } from '@apollo/client';
 import { ALL_USERS } from '../utils/graphql';
@@ -23,7 +23,6 @@ function FlatmatePage() {
             )
         }
         )
-        console.log(flatmateMarkUp);
     } else if (loading) {
         flatmateMarkUp = <Spinner animation="border" />
     }
@@ -31,14 +30,14 @@ function FlatmatePage() {
 
     return (
 
-        <Row xs={12} md={8} >
+        <Container xs={12} md={8} >
             <Row>
                 <h2>Find your ideal flatmate....</h2>
             </Row>
             <Row className="fm-card-display">
                 {flatmateMarkUp}
             </Row>
-        </Row>
+        </Container>
 
     )
 }

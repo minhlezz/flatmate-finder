@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
-import Navbar from './components/Navigation/nav-bar';
 import FlatmatePage from './pages/flatmate';
 import ProfilePage from './pages/Profile';
 import HouseHold from './pages/houseHold';
@@ -17,7 +16,8 @@ import ApolloProvider from './ApolloProvider';
 import HouseHoldDetail from './components/HouseHoldComponent/HouseHoldDetail/houseHoldDetail';
 import AdminRoute from './utils/AdminRoute';
 import DashBoard from './pages/dashboard';
-import Footer from './pages/footer';
+import Layout from './layout';
+import LandingPage from './pages/landingPage';
 
 export default function App() {
   return (
@@ -25,9 +25,10 @@ export default function App() {
       <AuthProvider>
         <MessageProvider>
           <BrowserRouter>
-              <Navbar />
+            <Layout>
               <main className="main-content">
                 <Switch>
+                  <Route exact path='/' component={LandingPage}></Route>
                   <AuthRoute exact path="/register" component={RegisterPage} />
                   <AuthRoute exact path="/login" component={loginPage} />
                   <Route exact path="/flatmate" component={FlatmatePage} />
@@ -39,7 +40,7 @@ export default function App() {
                   <AdminRoute path='/dashboard' component={DashBoard} />
                 </Switch>
               </main>
-              <Footer />
+            </Layout>
           </BrowserRouter>
         </MessageProvider>
       </AuthProvider>

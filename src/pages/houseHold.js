@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { Card, Row, Col, Button, Image, Spinner } from 'react-bootstrap';
+import { Card, Row, Col, Button, Image, Spinner, Container } from 'react-bootstrap';
 import { Icon } from 'semantic-ui-react'
 import '../styles/household.css';
 import { NavLink } from 'react-router-dom';
@@ -54,7 +54,7 @@ function HouseHold() {
                                             size='large'
                                             name='dollar' />
                                         {house.budget ? house.budget : 'aA'}
-                                    </ Card.Text>
+                                    </Card.Text>
 
                                     <Card.Text>
                                         <Icon
@@ -74,7 +74,7 @@ function HouseHold() {
                                             size='large'
                                             name='square full' />
                                         {house.area ? house.area : 'aA'}m2
-                                    </ Card.Text>
+                                    </Card.Text>
 
                                     <Button className="btn-fmCard" as={NavLink} to={`/household/${houseHoldID}`} >View</Button>
                                     {/* <NavLink to={`/household/${houseHoldID}`} >
@@ -125,7 +125,7 @@ function HouseHold() {
 
 
     return (
-        <Row xs={12} md={8}>
+        <Container xs={12} md={8}>
             <Row className="household-addingg">
                 <h3>Add your home there...  </h3>
                 <Button
@@ -161,7 +161,7 @@ function HouseHold() {
             <Row className="card-display">
                 {houseHoldMarkUp}
             </Row>
-        </Row >
+        </Container>
     )
 }
 
