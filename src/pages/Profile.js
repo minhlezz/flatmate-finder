@@ -1,33 +1,59 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import '../styles/profile.css';
 import ProfileImages from '../components/ProfileComponent/profileImage';
 import ProfileForm from '../components/ProfileComponent/profileForm';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button, Divider } from 'semantic-ui-react';
-
-
+import { Divider } from 'semantic-ui-react';
+import { Container, Row, Col, Button, Spinner } from 'react-bootstrap';
+import ProfileInfor from '../components/ProfileComponent/profileInfor';
+import { useQuery } from '@apollo/client';
+import { GET_USER } from '../utils/graphql';
+import { AuthContext } from '../context/auth-context';
 
 function Profile() {
-    return (
-        <>
-            <div className="flex-container">
-                <div className="left">
-                    <ProfileImages />
-                    <Button>Upload Photo</Button>
-                </div>
-                <div className="right">
-                    <div className="content">
-                        <h3>Personal Details</h3>
-                        <ProfileForm />
-                    </div>
-                </div>
+    const { user } = useContext(AuthContext);
+    const [isEdit, setIsEdit] = useState(false);
+    const onEdit = () => {
+        const status = !isEdit;
+        setIsEdit(status);
+    }
 
-            </div>
-            <Divider/>
-            <h1>Listings</h1>
-            <h3>Listing Cards........</h3>
-            
-        </>
+    const { loading, data: userData } = useQuery(GET_USER, {
+        variables: { id: user.userId }
+    });
+
+    if (loading) {
+        return <Spinner animation="border" />;
+    }
+
+    return (
+        <Container xs={12} md={8}>
+            <Row >
+                <Col >
+                    <ProfileImages />
+                </Col>
+                <Col className='content' >
+                    <h3>Personal Details</h3>
+                    {!isEdit && (
+                        <Button
+                            variant="danger"
+                            onClick={onEdit}
+                            style={{
+                                width: '80px'
+
+                            }}
+                        >Edit</Button>
+                    )}
+                    {isEdit ? (<ProfileForm onEdit={onEdit} isEdit={isEdit} />)
+                        : (<ProfileInfor userData={userData} />)
+                    }
+                </Col>
+            </Row>
+            <Divider />
+            <Row>
+                <h1>Listings</h1>
+            </Row>
+        </Container>
+
     )
 
 

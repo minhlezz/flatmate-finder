@@ -36,12 +36,12 @@ const UPDATE_USER = gql`
 function ProfileForm(props) {
     const { user } = useContext(AuthContext);
     const [values, setValues] = useState({});
-    const { loading, error, data } = useQuery(GET_USER, {
+    const { loading: updateLoading, error, data } = useQuery(GET_USER, {
         variables: { id: user.userId }
     });
     const [updateUser] = useMutation(UPDATE_USER);
 
-    if (error) return <h2>Error :!!:</h2>
+
     const userData = data;
 
     const onChange = (e) => {
@@ -65,74 +65,82 @@ function ProfileForm(props) {
                 props.history.push(`/flatmate/${userData.getUser.id}`);
             },
 
-
         });
+        props.onEdit();
     }
+
+    if (updateLoading) {
+        return <Spinner animation="border" />
+    }
+    if (error) return <h2>Error :!!:</h2>
 
     return (
         <>
-            { loading ? (<Spinner />) :
-                (
-                    <Form
-                        onSubmit={onSubmit}
-                    >
 
+            <Form
+                onSubmit={onSubmit}
+            >
+                {props.isEdit && (
+                    <>
                         <Button type="submit" primary>Save</Button>
-                        {/* <Button onClick={onEdit}>Cancel</Button> */}
-                        <Form.Field>
-                            <label>About Me</label>
-                            <textarea placeholder='describe yourself'
-                                disabled={false}
-                                name="aboutMe"
-                                defaultValue={userData.getUser.aboutMe}
-                                onChange={onChange}
-                            />
-                        </Form.Field>
-                        <Form.Field>
-                            <label>User Name</label>
-                            <input placeholder='Username '
-                                disabled={false}
-                                name="username"
-                                defaultValue={userData.getUser.username}
-                                onChange={onChange}
-                                required
-                            />
-                        </Form.Field>
-                        <Form.Field>
-                            <label>Mobile Phone</label>
-                            <input placeholder='Mobile Phone'
-                                disabled={false}
-                                name="mobile"
-                                defaultValue={userData.getUser.mobile}
-                                onChange={onChange}
-                            />
-                        </Form.Field>
-                        <Form.Field>
-                            <label>Age</label>
-                            <input placeholder='Age'
-                                type='number'
-                                disabled={false}
-                                name="age"
-                                defaultValue={userData.getUser.age}
-                                onChange={onChange}
-                                required
-                            />
-                        </Form.Field>
-                        <Form.Field>
-                            <label>Gender</label>
-                            <select placeholder='Gender'
-                                disabled={false}
-                                name="gender"
-                                defaultValue={userData.getUser.gender}
-                                onChange={onChange}
-                            >
-                                <option>Male</option>
-                                <option>Female</option>
-                                <option>Others</option>
-                            </select>
-                        </Form.Field>
-                    </Form>
+                        <Button onClick={props.onEdit}>Cancel</Button>
+                    </>
                 )}
+
+                <Form.Field>
+                    <label>About Me</label>
+                    <textarea placeholder='describe yourself'
+                        disabled={false}
+                        name="aboutMe"
+                        defaultValue={userData.getUser.aboutMe}
+                        onChange={onChange}
+                    />
+                </Form.Field>
+                <Form.Field>
+                    <label>User Name</label>
+                    <input placeholder='Username '
+                        disabled={false}
+                        name="username"
+                        defaultValue={userData.getUser.username}
+                        onChange={onChange}
+                        required
+                    />
+                </Form.Field>
+                <Form.Field>
+                    <label>Mobile Phone</label>
+                    <input placeholder='Mobile Phone'
+                        disabled={false}
+                        name="mobile"
+                        defaultValue={userData.getUser.mobile}
+                        onChange={onChange}
+                        required
+                    />
+                </Form.Field>
+                <Form.Field>
+                    <label>Age</label>
+                    <input placeholder='Age'
+                        type='number'
+                        disabled={false}
+                        name="age"
+                        defaultValue={userData.getUser.age}
+                        onChange={onChange}
+                        required
+                    />
+                </Form.Field>
+                <Form.Field>
+                    <label>Gender</label>
+                    <select placeholder='Gender'
+                        disabled={false}
+                        name="gender"
+                        defaultValue={userData.getUser.gender}
+                        onChange={onChange}
+                    >
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Others</option>
+                    </select>
+                </Form.Field>
+            </Form>
 
         </>
 

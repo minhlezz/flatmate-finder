@@ -28,21 +28,18 @@ function FlatmateListCard(props) {
                             <Button className="btn-fmCard" as={Link} to={`/flatmate/${id}`} >View</Button>
                             <Icon name="inbox"
                                 size="big"
-                                color="color-dg"
+                                className="color-dg"
                             />
                             <Icon name="phone"
                                 size="big"
-                                color="color-dg"
+                                className="color-dg"
                             />
                             <Icon name="mail"
                                 size="big"
-                                color="color-dg"
+                                className="color-dg"
                             />
                         </Col>
                     </Row>
-
-
-
                 </Card.Body>
             </Card>
 

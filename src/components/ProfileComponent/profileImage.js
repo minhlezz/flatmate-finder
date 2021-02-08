@@ -9,7 +9,6 @@ function ProfileImages() {
         <img
           className="d-block carousel"
           src={url}
-          alt="First slide"
         />
         <Carousel.Caption>
           <h3>First slide label</h3>
@@ -20,7 +19,6 @@ function ProfileImages() {
         <img
           className="d-block carousel "
           src={url}
-          alt="Third slide"
         />
 
         <Carousel.Caption>
@@ -32,13 +30,7 @@ function ProfileImages() {
         <img
           className="d-block carousel"
           src={url}
-          alt="Third slide"
         />
-
-        <Carousel.Caption>
-          <h3>Third slide label</h3>
-          <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-        </Carousel.Caption>
       </Carousel.Item>
     </Carousel>
 
