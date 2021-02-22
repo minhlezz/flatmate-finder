@@ -181,8 +181,10 @@ export const BOTH_QUERY = gql`
 export const HOME_FILTER = gql`
     query HomeFilters(
         $buildingType: String
-        $area: Float
-        $budget: Float
+        $areaGTE: Float
+        $areaLTE: Float
+        $budgetGTE: Float
+        $budgetLTE: Float
         $bath: Int
         $bed: Int
         $houseHoldSex: Gender
@@ -195,8 +197,10 @@ export const HOME_FILTER = gql`
         homeFilters(
             filtersInput: {
                 buildingType: $buildingType
-                area: $area
-                budget: $budget
+                areaGTE: $areaGTE
+                areaLTE: $areaLTE
+                budgetLTE: $budgetLTE
+                budgetGTE: $budgetGTE
                 bath: $bath
                 bed: $bed
                 houseHoldSex: $houseHoldSex

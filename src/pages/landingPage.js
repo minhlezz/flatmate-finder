@@ -44,14 +44,6 @@ function LandingPage() {
 
     return (
         <>
-            <Segment
-                inverted
-                textAlign='center'
-                style={{ minHeight: 550, padding: '1em 0em' }}
-                vertical
-            >
-                <HomePageHeading />
-            </Segment>
             <Segment style={{ padding: '8em 0em' }} vertical>
                 <Grid container stackable verticalAlign='middle'>
                     <Grid.Row>
@@ -86,6 +78,15 @@ function LandingPage() {
                     </Grid.Row>
                 </Grid>
             </Segment>
+            <Segment
+                inverted
+                textAlign='center'
+                style={{ minHeight: 550, padding: '1em 0em' }}
+                vertical
+            >
+                <HomePageHeading />
+            </Segment>
+
 
 
         </>

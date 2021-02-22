@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form, Row, Col } from 'react-bootstrap';
+import Slider from '@material-ui/core/Slider';
+import './household.modal.css';
 
 function HouseFilterModal(props) {
     const handleCloseFilterModal = props.handleCloseFilterModal;
@@ -7,6 +9,8 @@ function HouseFilterModal(props) {
 
     const [values, setValues] = useState({
     });
+    const [area, setArea] = useState([0, 2000]);
+    const [budget, setBudget] = useState([0, 999999]);
     const handleChange = (e) => {
         const target = e.target;
         const name = target.name;
@@ -16,6 +20,7 @@ function HouseFilterModal(props) {
             ...values,
             [name]: value
         });
+        console.log(values);
     }
     const handelSubmit = (e) => {
         e.preventDefault();
@@ -23,9 +28,18 @@ function HouseFilterModal(props) {
             variables: {
                 ...values
             }
-        })
+        });
         setValues('');
         handleCloseFilterModal();
+    }
+
+    const handleArea = (event, newArea) => {
+        setArea(newArea);
+        console.log(newArea);
+    }
+    const handleBudget = (event, newBudget) => {
+        setBudget(newBudget);
+        console.log(newBudget);
     }
 
 
@@ -37,6 +51,44 @@ function HouseFilterModal(props) {
             </Modal.Header>
             <Form onSubmit={handelSubmit}>
                 <Modal.Body>
+                    <Form.Group controlId="formBudget">
+                        <Form.Label>Budget</Form.Label>
+                        <Row>
+                            <Col xs={7}>
+                                <Slider
+                                    value={budget}
+                                    onChange={handleBudget}
+                                    min={0}
+                                    max={999999}
+                                    step={1000}
+                                />
+                            </Col>
+                            <Col className="ml-1rem">
+                                <p>
+                                    {budget[0]} - {budget[1]} vnd
+                                </p>
+                            </Col>
+                        </Row>
+                    </Form.Group>
+                    <Form.Group controlId="formArea" >
+                        <Form.Label>Area</Form.Label>
+                        <Row>
+                            <Col xs={6}>
+                                <Slider
+                                    value={area}
+                                    onChange={handleArea}
+                                    min={0}
+                                    max={2000}
+                                    step={1}
+                                />
+                            </Col>
+                            <Col className="ml-1rem">
+                                <p>
+                                    {area[0]} - {area[1]} m2
+                                </p>
+                            </Col>
+                        </Row>
+                    </Form.Group>
                     <Form.Group as={Row} controlId="formGender">
                         <Form.Label column sm={2}>Household Sex</Form.Label>
                         <Col sm={10}>
@@ -60,6 +112,8 @@ function HouseFilterModal(props) {
                                 label="internet"
                                 type="checkbox"
                                 id="internet"
+                                name="internet"
+                                onChange={handleChange}
                             />
                             <Form.Check
                                 custom
@@ -67,6 +121,8 @@ function HouseFilterModal(props) {
                                 label="Yard"
                                 type="checkbox"
                                 id="Yard"
+                                name="yard"
+                                onChange={handleChange}
                             />
                             <Form.Check
                                 custom
@@ -74,6 +130,27 @@ function HouseFilterModal(props) {
                                 label="Air Conditioning"
                                 type="checkbox"
                                 id="Air Conditioning"
+                                name="airConditioning"
+                                onChange={handleChange}
+                            />
+
+                            <Form.Check
+                                custom
+                                inline
+                                label="Parking"
+                                type="checkbox"
+                                id="Parking"
+                                name="parking"
+                                onChange={handleChange}
+                            />
+                             <Form.Check
+                                custom
+                                inline
+                                label="Private Bathroom"
+                                type="checkbox"
+                                id="PrivateBathroom"
+                                name="privateBathroom"
+                                onChange={handleChange}
                             />
                         </Col>
                     </Form.Group>

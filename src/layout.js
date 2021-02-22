@@ -10,7 +10,7 @@ function Layout({ children }) {
         <Container fluid>
             <Navbar />
             {children}
-            <Footer />
+            {/* <Footer /> */}
         </Container>
     )
 }

@@ -58,19 +58,19 @@ function HouseHold() {
 
                                     <Card.Text>
                                         <Icon
-                                            color='color-dg'
+                                            className='color-dg'
                                             size='large'
                                             name='bed' />
                                         {house.bed ? house.bed : 'aA'}
 
                                         <Icon
-                                            color='color-dg'
+                                            className='color-dg'
                                             size='large'
                                             name='bath' />
                                         {house.bath ? house.bath : 'aA'}
 
                                         <Icon
-                                            color='color-dg'
+                                            className='color-dg'
                                             size='large'
                                             name='square full' />
                                         {house.area ? house.area : 'aA'}m2
@@ -100,18 +100,18 @@ function HouseHold() {
                                     <NavLink to={`/flatmate/${flatmateID}`} >
                                         <Icon
                                             inverted
-                                            color='color-dg'
+                                            className='color-dg'
                                             size='big'
                                             name='address card outline' />
                                     </NavLink>
                                     <Icon
                                         inverted
-                                        color='color-dg'
+                                        className='color-dg'
                                         size='big'
                                         name='chat' />
                                     <Icon
                                         inverted
-                                        color='color-dg'
+                                        className='color-dg'
                                         size='big'
                                         name='phone' />
                                 </Col>
@@ -145,17 +145,19 @@ function HouseHold() {
                 >
                     <Icon name='filter' />
                 </Button>
+                
             </Row>
             {/* Add new HouseHold */}
+            <Row>
+                <HouseHoldModal show={show} handleClose={handleClose} />
 
-            <HouseHoldModal show={show} handleClose={handleClose} />
-
-            {/* Filtering  */}
-            <HouseFilterModal
-                filterModal={filterModal}
-                handleCloseFilterModal={handleCloseFilterModal}
-                executeFilter={executeFilter}
-            />
+                {/* Filtering  */}
+                <HouseFilterModal
+                    filterModal={filterModal}
+                    handleCloseFilterModal={handleCloseFilterModal}
+                    executeFilter={executeFilter}
+                />
+            </Row>
 
             {/* Household*/}
             <Row className="card-display">

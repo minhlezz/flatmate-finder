@@ -103,7 +103,9 @@ body {
 .mt-1rem{
   margin-top: 1rem !important;
 }
-
+.ml-1rem {
+  margin-left: 1rem !important;
+}
 .mb-2rem {
   padding: 1rem 0 6rem 0;
 }
@@ -158,3 +160,4 @@ body {
 .color-dg {
   color: #417054 !important;
 }
+

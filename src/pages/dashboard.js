@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Container } from 'react-bootstrap';
 import SidebarDashboard from '../components/DashBoard/sidebarDB/sidebarDB';
 import {
     BrowserRouter as Router,
@@ -15,21 +15,24 @@ function DashBoard() {
     return (
 
         <Router>
-            <Row>
-                <Col xs={2}>
-                    <SidebarDashboard />
-                </Col>
-                <Col xs={10}
+            <Container xs={12} md={8} fluid >
+                <Row>
+                    <Col >
+                        <SidebarDashboard />
+                    </Col>
+                    <Col xs={9}
 
-                >
-                    <Switch>
-                        <Route path="/dashboard/chart" component={Overview} />
-                        <Route path="/dashboard/analysis" component={Analysis} />
-                        <Route path="/dashboard/manage" component={ManageData} />
-                    </Switch>
-                </Col>
+                    >
+                        <Switch>
+                            <Route path="/dashboard/chart" component={Overview} />
+                            <Route path="/dashboard/analysis" component={Analysis} />
+                            <Route path="/dashboard/manage" component={ManageData} />
+                        </Switch>
+                    </Col>
 
-            </Row>
+                </Row>
+            </Container>
+
 
         </Router>
 

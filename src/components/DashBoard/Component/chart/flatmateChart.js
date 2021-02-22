@@ -19,10 +19,10 @@ function FlatmateChart(props) {
     ];
 
     const month = [
-        { quarter: 1, flatmate: 12 },
-        { quarter: 2, flatmate: 20 },
-        { quarter: 3, flatmate: 15 },
-        { quarter: 4, flatmate: 7 },
+        { quarter: 1, flatmate: 120 },
+        { quarter: 2, flatmate: 150 },
+        { quarter: 3, flatmate: 77 },
+        { quarter: 4, flatmate: 30 },
         { quarter: 5, flatmate: 10 }
     ];
     const week = [
