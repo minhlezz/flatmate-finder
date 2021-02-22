@@ -13,19 +13,19 @@ function HouseholdChart(props) {
     
 
     const year = [
-        { quarter: 1, household: 551 },
-        { quarter: 2, household: 759 },
-        { quarter: 3, household: 432 },
+        { quarter: 1, household: 322 },
+        { quarter: 2, household: 350 },
+        { quarter: 3, household: 220 },
         { quarter: 4, household: 112 },
-        { quarter: 5, household: 98 }
+        { quarter: 5, household: 122 }
     ];
 
     const month = [
-        { quarter: 1, household: 12 },
-        { quarter: 2, household: 20 },
-        { quarter: 3, household: 15 },
-        { quarter: 4, household: 7 },
-        { quarter: 5, household: 10 }
+        { quarter: 1, household: 133 },
+        { quarter: 2, household: 112 },
+        { quarter: 3, household: 65 },
+        { quarter: 4, household: 34 },
+        { quarter: 5, household: 38 }
     ];
     const week = [
         { quarter: 1, household: 7 },
