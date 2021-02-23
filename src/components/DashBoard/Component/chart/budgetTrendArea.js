@@ -3,33 +3,62 @@ import { VictoryAxis, VictoryChart, VictoryLegend, VictoryLine, VictoryTheme } f
 
 function BudgetTrendArea() {
     const data = [
-        { x: 1, y: 5000 },
-        { x: 2, y: 3990 },
-        { x: 3, y: 4422 },
-        { x: 4, y: 5676 },
-        { x: 5, y: 8000 },
-        { x: 6, y: 6777 },
-        { x: 7, y: 6555 },
-        { x: 8, y: 7442 },
-        { x: 9, y: 8544 },
-        { x: 10, y: 9644 },
-        { x: 11, y: 9888 },
-        { x: 12, y: 10422 },
-    ]
+        { x: 1, y: 3433 },
+        { x: 2, y: 3342 },
+        { x: 3, y: 3211 },
+        { x: 4, y: 3440 },
+        { x: 5, y: 3544 },
+        { x: 6, y: 3949 },
+        { x: 7, y: 4002 },
+        { x: 8, y: 4125 },
+        { x: 9, y: 4221 },
+        { x: 10, y: 4354 },
+        { x: 11, y: 4300 },
+        { x: 12, y: 4500 },
+    ];
     const data2 = [
         { x: 1, y: 3467 },
+        { x: 2, y: 3322 },
+        { x: 3, y: 3122 },
+        { x: 4, y: 3242 },
+        { x: 5, y: 3231 },
+        { x: 6, y: 3123 },
+        { x: 7, y: 3433 },
+        { x: 8, y: 3222 },
+        { x: 9, y: 3244 },
+        { x: 10, y: 3543 },
+        { x: 11, y: 3213 },
+        { x: 12, y: 3333 },
+    ];
+    const data3 = [
+        { x: 1, y: 1000 },
         { x: 2, y: 2333 },
         { x: 3, y: 3122 },
-        { x: 4, y: 2888 },
-        { x: 5, y: 2266 },
+        { x: 4, y: 3222 },
+        { x: 5, y: 3444 },
         { x: 6, y: 3552 },
         { x: 7, y: 3433 },
         { x: 8, y: 3222 },
-        { x: 9, y: 4229 },
-        { x: 10, y: 4422 },
-        { x: 11, y: 4552 },
-        { x: 12, y: 3333 },
+        { x: 9, y: 2774 },
+        { x: 10, y: 2445 },
+        { x: 11, y: 2556 },
+        { x: 12, y: 2888 },
+    ];
+    const data4 = [
+        { x: 1, y: 3467 },
+        { x: 2, y: 2333 },
+        { x: 3, y: 2345 },
+        { x: 4, y: 2888 },
+        { x: 5, y: 2786 },
+        { x: 6, y: 2884 },
+        { x: 7, y: 2992 },
+        { x: 8, y: 3122 },
+        { x: 9, y: 3002 },
+        { x: 10, y: 2990 },
+        { x: 11, y: 2888 },
+        { x: 12, y: 2821 },
     ]
+  
     return (
         <>
             <VictoryChart
@@ -59,8 +88,10 @@ function BudgetTrendArea() {
                     gutter={20}
                     style={{ border: { stroke: "black" }, title: { fontSize: 20 } }}
                     data={[
-                        { name: "District 1", symbol: { fill: "black" } },
-                        { name: "District 2", symbol: { fill: "#c43a31" } },
+                        { name: "District 1", symbol: { fill: "#c43a31" } },
+                        { name: "District 2", symbol: { fill: "black" } },
+                        { name: "District 3", symbol: { fill: "cyan" } },
+                        { name: "District 4", symbol: { fill: "gold" } },
                     ]}
                 />
                 <VictoryLine
@@ -75,6 +106,19 @@ function BudgetTrendArea() {
                     }}
                     data={data2}
                 />
+                 <VictoryLine
+                    style={{
+                        data: { stroke: "cyan" }
+                    }}
+                    data={data3}
+                />
+                 <VictoryLine
+                    style={{
+                        data: { stroke: "gold" }
+                    }}
+                    data={data4}
+                />
+               
             </VictoryChart>
         </>
     )

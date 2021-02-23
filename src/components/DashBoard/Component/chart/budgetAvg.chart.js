@@ -46,7 +46,7 @@ function BudgetAvgChart() {
                 data={[
                     { name: "Your current budget", symbol: { fill: "gold", type: "star" } },
                     { name: "Flatmate budget average", symbol: { fill: "aqua" } },
-                    { name: "Household budget average", symbol: { fill: "#ccc" } },
+                    { name: "Household budget average", symbol: { fill: "navy" } },
                 ]}
             />
             <VictoryAxis
