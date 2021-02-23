@@ -20,15 +20,19 @@ function HouseHold() {
 
 
     const [executeFilter, { data: homeFiltersData, loading: filterLoading }] = useLazyQuery(HOME_FILTER);
+    const homes = homeFiltersData?.homeFilters;
 
     useEffect(() => {
         //render data at initialize
-        executeFilter();
+        executeFilter({
+            variables: {
+                'budgetLTE': 4000000,
+                'budgetGTE': 0
+            }
+        });
     }, []);
-
     if (filterLoading) return <Spinner animation="border" />
 
-    const homes = homeFiltersData?.homeFilters;
 
     let houseHoldMarkUp;
 
@@ -145,7 +149,7 @@ function HouseHold() {
                 >
                     <Icon name='filter' />
                 </Button>
-                
+
             </Row>
             {/* Add new HouseHold */}
             <Row>

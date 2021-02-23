@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form, Row, Col } from 'react-bootstrap';
 import Slider from '@material-ui/core/Slider';
 import './household.modal.css';
@@ -6,11 +6,16 @@ import './household.modal.css';
 function HouseFilterModal(props) {
     const handleCloseFilterModal = props.handleCloseFilterModal;
     const executeFilter = props.executeFilter;
+    const homes = props.homes
 
     const [values, setValues] = useState({
     });
     const [area, setArea] = useState([0, 2000]);
-    const [budget, setBudget] = useState([0, 999999]);
+    const [budget, setBudget] = useState([0, 4000000]);
+    const [budgetValues, setBudgetValues] = useState({
+        budgetGTE: 0,
+        budgetLTE: 4000000
+    })
     const handleChange = (e) => {
         const target = e.target;
         const name = target.name;
@@ -24,25 +29,34 @@ function HouseFilterModal(props) {
     }
     const handelSubmit = (e) => {
         e.preventDefault();
+        console.log(values);
+        console.log(budgetValues.budgetValues);
+        const budgetList = budgetValues.budgetValues
         executeFilter({
             variables: {
-                ...values
+                ...values,
+                ...budgetList
             }
         });
+
         setValues('');
         handleCloseFilterModal();
     }
 
-    const handleArea = (event, newArea) => {
+    const handleArea = (e, newArea) => {
         setArea(newArea);
         console.log(newArea);
     }
-    const handleBudget = (event, newBudget) => {
-        setBudget(newBudget);
-        console.log(newBudget);
+    const handleBudget = (e, newValue) => {
+        setBudget(newValue)
+        setBudgetValues({
+            budgetValues: {
+                budgetGTE: newValue[0],
+                budgetLTE: newValue[1]
+            }
+        })
     }
-
-
+  
     return (
 
         <Modal show={props.filterModal} onHide={handleCloseFilterModal}>
@@ -59,7 +73,7 @@ function HouseFilterModal(props) {
                                     value={budget}
                                     onChange={handleBudget}
                                     min={0}
-                                    max={999999}
+                                    max={9999999}
                                     step={1000}
                                 />
                             </Col>
@@ -70,7 +84,7 @@ function HouseFilterModal(props) {
                             </Col>
                         </Row>
                     </Form.Group>
-                    <Form.Group controlId="formArea" >
+                    {/* <Form.Group controlId="formArea" >
                         <Form.Label>Area</Form.Label>
                         <Row>
                             <Col xs={6}>
@@ -88,7 +102,7 @@ function HouseFilterModal(props) {
                                 </p>
                             </Col>
                         </Row>
-                    </Form.Group>
+                    </Form.Group> */}
                     <Form.Group as={Row} controlId="formGender">
                         <Form.Label column sm={2}>Household Sex</Form.Label>
                         <Col sm={10}>
@@ -143,7 +157,7 @@ function HouseFilterModal(props) {
                                 name="parking"
                                 onChange={handleChange}
                             />
-                             <Form.Check
+                            <Form.Check
                                 custom
                                 inline
                                 label="Private Bathroom"
