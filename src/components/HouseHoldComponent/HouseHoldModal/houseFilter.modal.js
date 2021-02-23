@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Modal, Button, Form, Row, Col } from 'react-bootstrap';
 import Slider from '@material-ui/core/Slider';
 import './household.modal.css';
@@ -6,7 +6,6 @@ import './household.modal.css';
 function HouseFilterModal(props) {
     const handleCloseFilterModal = props.handleCloseFilterModal;
     const executeFilter = props.executeFilter;
-    const homes = props.homes
 
     const [values, setValues] = useState({
     });

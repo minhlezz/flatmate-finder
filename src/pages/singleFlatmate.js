@@ -55,7 +55,6 @@ function SingleFlatmate(props) {
                         <FlatmateDetailCard flatmateID={flatmateID} />
                         <h3>Location </h3>
                         <LocationPoint flatmateData={data} isEdit={isEdit} />
-
                     </div>
                 </div>
             )}

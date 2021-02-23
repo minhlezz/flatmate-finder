@@ -39,9 +39,9 @@ function LocationAPI(props) {
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     attribution='&copy;<a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 />
-                {props.userData?.users.map((location, index) => {
+                {/* {props.userData?.users.map((location, index) => {
                     return <Markers locationData={location} key={index} />
-                })}
+                })} */}
                 <EsriLeafletGeoSearch useMapBounds={false} position="topright" />
             </MapContainer>
         </>
