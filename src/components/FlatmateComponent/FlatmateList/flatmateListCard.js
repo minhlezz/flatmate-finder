@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import './cardStyles.css';
 
 function FlatmateListCard(props) {
-    const url = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbueodB3x6JeR824Io2li53ELqlplDb3Xoqw&usqp=CAU';
+    const url = 'http://arkansasconsumer.org/wp-content/uploads/2014/12/roommate.jpg';
     const { id, username, budget, age, gender, moveInDate } = props.userData;
     return (
         <>
