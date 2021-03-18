@@ -232,5 +232,57 @@ export const HOME_FILTER = gql`
                 }
             }
     }
-`
+`;
+
+export const USER_FILTER = gql`
+    query UserFilters(
+        $ageGTE: Int
+        $ageLTE: Int
+        $gender: Gender
+        $cleanliness: String
+        $overnightGuests: String
+        $partyHabits: String
+        $getUp: String
+        $goToBed: String
+        $foodReference: String
+        $smoker: String
+        $workSchedule: String
+        $occupation: String
+        $pet: String
+     
+    ){
+        userFilters(
+            filtersInput: {
+                ageGTE: $ageGTE
+                ageLTE: $ageLTE
+                gender: $gender
+                cleanliness: $cleanliness
+                overnightGuests: $overnightGuests
+                partyHabits: $partyHabits
+                getUp: $getUp
+                goToBed: $goToBed
+                foodReference: $foodReference
+                smoker: $smoker
+                workSchedule: $workSchedule
+                occupation: $occupation
+                pet: $pet
+            }) {
+                id
+                gender
+                age
+                budget
+                username
+                cleanliness
+                overnightGuests
+                partyHabits
+                getUp
+                goToBed
+                foodReference
+                smoker
+                workSchedule
+                occupation
+                pet
+            }
+    }
+`;
 

@@ -18,7 +18,6 @@ function FlatmateListCard(props) {
                             <Card.Text> {age ? age : '24'}{' '}{gender ? gender : 'Male'} </Card.Text>
                             <Card.Text>{budget ? '$' + budget : 'Private budget'}</Card.Text>
                             <Card.Text>Melbourn, VIC, Australia </Card.Text>
-                            <Card.Text><strong>MoveInDate</strong> {moveInDate}</Card.Text>
                             <Card.Text>
                                 <Icon name="checkmark" color="green" />
                                 Phone Verified
