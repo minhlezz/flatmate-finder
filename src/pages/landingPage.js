@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 
 const HomePageHeading = () => {
     return (
-        <Container text>
+        <Container >
             <Header
                 as='h1'
                 content='Focus on what’s important & spend less on rent'

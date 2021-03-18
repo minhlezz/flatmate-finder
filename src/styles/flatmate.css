@@ -9,5 +9,13 @@
 
 
 
+.filterButton {
+    display: flex;
+    justify-content: center;
+}
 
-
+.filterButton button {
+    height: 50px;
+    width: 150px;
+    margin: 5px;
+}

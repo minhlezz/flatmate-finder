@@ -110,7 +110,7 @@ function HouseFilterModal(props) {
                                 onChange={handleChange}
                                 required
                             >
-                                <option>Everyone</option>
+                                <option>Others</option>
                                 <option >Male</option>
                                 <option >Female</option>
                             </Form.Control>

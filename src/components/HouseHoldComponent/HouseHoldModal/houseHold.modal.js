@@ -41,22 +41,6 @@ function HouseHoldModal(props) {
 
         createHouseHold({
             variables: values,
-            update: (cache, { data: { createHouseHold } }) => {
-                cache.modify({
-                    fields: {
-                        getHouseHolds(existings = []) {
-                            const newHousehold = cache.writeQuery({
-                                data: createHouseHold,
-                                query: GET_HOUSEHOLDS
-                            });
-                            return [
-                                ...existings,
-                                newHousehold
-                            ];
-                        }
-                    }
-                })
-            },
             refetchQueries: [
                 { query: HOME_FILTER }
             ]
