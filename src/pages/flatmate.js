@@ -1,42 +1,49 @@
-import React, { Fragment, useContext, useState } from 'react';
-import { Container, Row, Spinner, Button } from 'react-bootstrap';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
+import { Container, Row, Spinner, Button, Dropdown, DropdownButton } from 'react-bootstrap';
 import '../styles/flatmate.css'
-import { useQuery } from '@apollo/client';
-import { ALL_USERS } from '../utils/graphql';
+import { useLazyQuery } from '@apollo/client';
 import FlatmateListCard from '../components/FlatmateComponent/FlatmateList/flatmateListCard';
 import { AuthContext } from '../context/auth-context';
 import FlatmateFilter from '../components/FlatmateComponent/FlatmateFilter/flatmateFilter.modal';
-
+import { USER_FILTER } from '../utils/graphql';
 function FlatmatePage() {
-    /**Declare variables  */
-    //State
-    const [userList, setUserList] = useState();
+
     //Auth user variable
     const { user } = useContext(AuthContext);
     const userContext = user;
 
-    //Modal Variables
+    /**State decleration */
     const [filterModal, setFilterModal] = useState(false);
-
+    const [state, setState] = useState([]);
+    const [query, setQuery] = useState("");
     /********GraphQL handling **********/
-    const { loading, data: flatmateData } = useQuery(ALL_USERS)
+    const [filterFunction, { called, loading, data }] = useLazyQuery(USER_FILTER, {
+        variables: {
+            ...query
+        }
+    })
 
+    /** controlling render  */
+    useEffect(() => {
+        filterFunction();
+        if (data && data.userFilters) {
+            setState(data.userFilters);
+        }
+    }, [query, data, filterFunction]);
 
-
-    const users = flatmateData?.users;
+    /**Flatmate List Card */
     let flatmateMarkUp;
-    if (users?.length > 0) {
-        flatmateMarkUp = users.map((user, index) => {
+    if (state?.length > 0) {
+        flatmateMarkUp = state.map((user, index) => {
             return (
                 <Fragment key={index}>
                     <FlatmateListCard userData={user} userContext={userContext} />
                 </Fragment>
             )
         })
-    } else if (loading) {
+    } else if (called && loading) {
         flatmateMarkUp = <Spinner animation="border" />
     }
-
     /**onChange handling */
     //Modal Onchange
     const handleModalShow = () => {
@@ -47,11 +54,20 @@ function FlatmatePage() {
         setFilterModal(false);
     }
 
-    const callbackFilterModal = (childData) => {
-        setUserList(childData);
-        console.log(childData + ' child');
+    const callbackFilterModal = async (childData) => {
+        setQuery(childData)
     }
 
+    const handleSortBy = (sortBy) => {
+        const sortList = [...state]
+        if (sortBy === 'ASC') {
+            sortList.sort((a, b) => a.budget < b.budget ? -1 : 1);
+        } else if (sortBy === 'DESC') {
+            sortList.sort((a, b) => a.budget < b.budget ? 1 : -1);
+        }
+        setState(sortList);
+    };
+    console.log(state);
     return (
 
         <Container xs={12} md={8} >
@@ -61,15 +77,26 @@ function FlatmatePage() {
             <Row className="filterButton">
                 <Button variant="outline-secondary"
                     title="Filters"
+                    size="lg"
                     onClick={handleModalShow}
                 >
                     Filters
                 </Button>
-                <Button variant="outline-secondary">Sort By</Button>
+                <DropdownButton
+                    id="dropdown-item-button"
+                    variant="outline-secondary"
+                    title="SortBy"
+                    onSelect={handleSortBy}
+                    size="lg"
+                >
+                    <Dropdown.ItemText>Budget</Dropdown.ItemText>
+                    <Dropdown.Item eventKey='ASC'>ASC</Dropdown.Item>
+                    <Dropdown.Item eventKey='DESC'>DESC</Dropdown.Item>
+                </DropdownButton>
                 <FlatmateFilter
                     filterModal={filterModal}
                     handleModalClose={handleModalClose}
-                    flatmateData={flatmateData}
+                    flatmateData={state}
                     parentCallback={callbackFilterModal}
                 />
             </Row>

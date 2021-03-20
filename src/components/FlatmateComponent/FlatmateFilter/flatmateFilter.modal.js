@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
-import { Modal, Button, Form, Row, Col, Spinner } from 'react-bootstrap';
+import { Modal, Button, Form, Row, Col } from 'react-bootstrap';
 import { Slider } from 'antd';
-import { USER_FILTER } from '../../../utils/graphql';
-import { useLazyQuery } from '@apollo/client';
-
 
 function FlatmateFilter(props) {
     /**Declare variables *******/
@@ -11,22 +8,19 @@ function FlatmateFilter(props) {
     //Props properties
     const filterModal = props.filterModal;
     const handleModalClose = props.handleModalClose;
-
     //State variables
     const [budget, setBudget] = useState([0, 200000000]);
     const [age, setAge] = useState([18, 100]);
     const [gender, setGender] = useState();
     const selectOptions = {
-        // budgetGTE: budget[0],
-        // budgetLTE: budget[1],
+        budgetGTE: budget[0],
+        budgetLTE: budget[1],
         ageGTE: age[0],
         ageLTE: age[1],
-        gender
+        gender: gender ? gender : ''
     };
     /**Apollo Client */
-    const [userFilter, { data: userFilterData, loading: filterLoading }] = useLazyQuery(USER_FILTER);
 
-    const userData = userFilterData?.userFilters;
     /**Form ********/
 
     //onChange
@@ -41,24 +35,16 @@ function FlatmateFilter(props) {
     //onSubmit
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await userFilter({
-            variables: {
-                ...selectOptions
-            }
-        })
-        await sendData();
+        sendData();
         handleModalClose();
 
     }
 
     const sendData = () => {
-        props.parentCallback(userData);
+        props.parentCallback(selectOptions);
     };
 
     /*************Render ***********/
-    if (filterLoading) {
-        return <Spinner animation="border" />
-    }
     return (
         <Modal show={filterModal} onHide={handleModalClose}>
             <Modal.Header closeButton>
@@ -76,7 +62,7 @@ function FlatmateFilter(props) {
                                 required
                             >
                                 <option value=''>Select Gender</option>
-                                <option>Others</option>
+                                <option>All</option>
                                 <option >Male</option>
                                 <option >Female</option>
                             </Form.Control>
@@ -93,7 +79,7 @@ function FlatmateFilter(props) {
                             <Slider
                                 className="slider-range"
                                 range
-                                defaultValue={[18, 100]}
+                                defaultValue={age}
                                 step={1}
                                 onChange={handleChangeAge}
                                 min={18}
@@ -112,7 +98,7 @@ function FlatmateFilter(props) {
                     <Form.Row>
                         <Form.Group as={Col} controlId="budget">
                             <Slider range
-                                defaultValue={[0, 200000000]}
+                                defaultValue={budget}
                                 step={100000}
                                 onChange={handleChangeBudget}
                                 min={0}
