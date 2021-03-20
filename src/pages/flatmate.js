@@ -9,7 +9,8 @@ import FlatmateFilter from '../components/FlatmateComponent/FlatmateFilter/flatm
 
 function FlatmatePage() {
     /**Declare variables  */
-    const [values, setValues] = useState({});
+    //State
+    const [userList, setUserList] = useState();
     //Auth user variable
     const { user } = useContext(AuthContext);
     const userContext = user;
@@ -21,8 +22,8 @@ function FlatmatePage() {
     const { loading, data: flatmateData } = useQuery(ALL_USERS)
 
 
-    const users = flatmateData?.users;
 
+    const users = flatmateData?.users;
     let flatmateMarkUp;
     if (users?.length > 0) {
         flatmateMarkUp = users.map((user, index) => {
@@ -31,8 +32,7 @@ function FlatmatePage() {
                     <FlatmateListCard userData={user} userContext={userContext} />
                 </Fragment>
             )
-        }
-        )
+        })
     } else if (loading) {
         flatmateMarkUp = <Spinner animation="border" />
     }
@@ -48,8 +48,8 @@ function FlatmatePage() {
     }
 
     const callbackFilterModal = (childData) => {
-        setValues(childData);
-        console.log(childData);
+        setUserList(childData);
+        console.log(childData + ' child');
     }
 
     return (
