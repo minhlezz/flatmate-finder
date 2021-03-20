@@ -238,8 +238,8 @@ export const USER_FILTER = gql`
     query UserFilters(
         $ageGTE: Int
         $ageLTE: Int
-        # $budgetGTE: Float
-        # $budgetLTE: Float
+        $budgetGTE: Float
+        $budgetLTE: Float
         $gender: Gender
         $cleanliness: String
         $overnightGuests: String
@@ -257,8 +257,8 @@ export const USER_FILTER = gql`
             userFilterInput: {
                 ageGTE: $ageGTE
                 ageLTE: $ageLTE
-                # budgetGTE: $budgetGTE
-                # budgetLTE: $budgetLTE
+                budgetGTE: $budgetGTE
+                budgetLTE: $budgetLTE
                 gender: $gender
                 cleanliness: $cleanliness
                 overnightGuests: $overnightGuests
