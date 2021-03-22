@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
 import Navbar from './components/Navigation/nav-bar';
-import Footer from './pages/footer';
+// import Footer from './pages/footer';
 
 
 function Layout({ children }) {

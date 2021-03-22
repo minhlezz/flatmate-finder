@@ -20,10 +20,19 @@
     flex-direction: column;
     align-items: center;
 }
-.household-adding {
+.household-adding{
     display: flex;
     flex-direction: row;
     align-items: baseline;
+}
+
+.household-adding button {
+    margin-left: 50px;
+    height: 100px !important;
+}
+
+.household-adding i {
+    font-size: 2em !important;
 }
 
 /* Household-detail style */

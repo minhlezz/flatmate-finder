@@ -6,7 +6,7 @@ import './cardStyles.css';
 
 function FlatmateListCard(props) {
     const url = 'http://arkansasconsumer.org/wp-content/uploads/2014/12/roommate.jpg';
-    const { id, username, budget, age, gender, moveInDate } = props.userData;
+    const { id, username, budget, age, gender } = props.userData;
     return (
         <>
             <Card className="fm-card-main">

@@ -2,11 +2,12 @@ import React from 'react';
 import { Carousel } from 'react-bootstrap';
 
 function ProfileImages() {
-  const url = 'https://1.bp.blogspot.com/-emHO_9HVxGU/WZazwgy8_rI/AAAAAAAAAhs/3Zg7j4TZAlM2gMovjXK4FAEf3ju55hmEwCLcBGAs/s1600/18881967_131782964052220_5128435195745790304_n.jpg'
+  const url = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4aZFSAbPo6OMJKsZU4jolegRZj3dde7CxCQ&usqp=CAU'
   return (
     <Carousel>
       <Carousel.Item>
         <img
+          alt='a1'
           className="d-block carousel"
           src={url}
         />
@@ -17,6 +18,7 @@ function ProfileImages() {
       </Carousel.Item>
       <Carousel.Item>
         <img
+          alt='a2'
           className="d-block carousel "
           src={url}
         />
@@ -28,6 +30,7 @@ function ProfileImages() {
       </Carousel.Item>
       <Carousel.Item>
         <img
+          alt='a3'
           className="d-block carousel"
           src={url}
         />
