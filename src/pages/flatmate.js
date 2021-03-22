@@ -67,7 +67,6 @@ function FlatmatePage() {
         }
         setState(sortList);
     };
-    console.log(state);
     return (
 
         <Container xs={12} md={8} >
@@ -96,7 +95,6 @@ function FlatmatePage() {
                 <FlatmateFilter
                     filterModal={filterModal}
                     handleModalClose={handleModalClose}
-                    flatmateData={state}
                     parentCallback={callbackFilterModal}
                 />
             </Row>

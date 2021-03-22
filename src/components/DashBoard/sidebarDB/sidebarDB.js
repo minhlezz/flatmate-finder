@@ -4,7 +4,6 @@ import {
     Icon,
     Menu,
     Sidebar,
-    Dropdown
 } from 'semantic-ui-react';
 import './sidebar.css';
 

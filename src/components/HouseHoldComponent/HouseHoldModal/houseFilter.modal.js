@@ -1,20 +1,39 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form, Row, Col } from 'react-bootstrap';
-import Slider from '@material-ui/core/Slider';
 import './household.modal.css';
+import { Slider } from 'antd';
 
 function HouseFilterModal(props) {
     const handleCloseFilterModal = props.handleCloseFilterModal;
-    const executeFilter = props.executeFilter;
 
-    const [values, setValues] = useState({
-    });
+    /**State Declaration */
     const [area, setArea] = useState([0, 2000]);
-    const [budget, setBudget] = useState([0, 4000000]);
-    const [budgetValues, setBudgetValues] = useState({
-        budgetGTE: 0,
-        budgetLTE: 4000000
-    })
+    const [budget, setBudget] = useState([0, 200000000]);
+    const [values, setValues] = useState("");
+    const selectOptions = {
+        budgetGTE: budget[0],
+        budgetLTE: budget[1],
+        areaGTE: area[0],
+        areaLTE: area[1],
+        ...values
+    };
+    /**
+    /**onSubmit */
+    const handelSubmit = (e) => {
+        e.preventDefault();
+        sendData();
+        setValues("");
+        handleCloseFilterModal();
+    };
+
+    /**onChange */
+    const handleChangeBudget = (budgetValue) => {
+        setBudget(budgetValue);
+    };
+    const handleChangeArea = (areaValue) => {
+        setArea(areaValue);
+    };
+
     const handleChange = (e) => {
         const target = e.target;
         const name = target.name;
@@ -24,38 +43,14 @@ function HouseFilterModal(props) {
             ...values,
             [name]: value
         });
-        console.log(values);
-    }
-    const handelSubmit = (e) => {
-        e.preventDefault();
-        console.log(values);
-        console.log(budgetValues.budgetValues);
-        const budgetList = budgetValues.budgetValues
-        executeFilter({
-            variables: {
-                ...values,
-                ...budgetList
-            }
-        });
+    };
 
-        setValues('');
-        handleCloseFilterModal();
-    }
+    //Callback
+    const sendData = () => {
+        props.parentCallback(selectOptions);
+    };
 
-    const handleArea = (e, newArea) => {
-        setArea(newArea);
-        console.log(newArea);
-    }
-    const handleBudget = (e, newValue) => {
-        setBudget(newValue)
-        setBudgetValues({
-            budgetValues: {
-                budgetGTE: newValue[0],
-                budgetLTE: newValue[1]
-            }
-        })
-    }
-  
+    /**Render */
     return (
 
         <Modal show={props.filterModal} onHide={handleCloseFilterModal}>
@@ -64,44 +59,44 @@ function HouseFilterModal(props) {
             </Modal.Header>
             <Form onSubmit={handelSubmit}>
                 <Modal.Body>
-                    <Form.Group controlId="formBudget">
-                        <Form.Label>Budget</Form.Label>
-                        <Row>
-                            <Col xs={7}>
-                                <Slider
-                                    value={budget}
-                                    onChange={handleBudget}
-                                    min={0}
-                                    max={9999999}
-                                    step={1000}
-                                />
-                            </Col>
-                            <Col className="ml-1rem">
-                                <p>
-                                    {budget[0]} - {budget[1]} vnd
-                                </p>
-                            </Col>
-                        </Row>
-                    </Form.Group>
-                    {/* <Form.Group controlId="formArea" >
+                    <Form.Row>
+                        <Form.Group as={Col}>
+                            <Form.Label>Budget</Form.Label>
+                            <Form.Label className="ml-2">
+                                <strong> {budget[0]}vnd - {budget[1]}vnd</strong>
+                            </Form.Label>
+                        </Form.Group>
+                    </Form.Row>
+                    <Form.Row>
+                        <Form.Group as={Col} controlId="budget">
+                            <Slider range
+                                defaultValue={budget}
+                                step={100000}
+                                onChange={handleChangeBudget}
+                                min={0}
+                                max={200000000}
+                            />
+                        </Form.Group>
+                    </Form.Row>
+                    <Form.Row>
                         <Form.Label>Area</Form.Label>
-                        <Row>
-                            <Col xs={6}>
-                                <Slider
-                                    value={area}
-                                    onChange={handleArea}
-                                    min={0}
-                                    max={2000}
-                                    step={1}
-                                />
-                            </Col>
-                            <Col className="ml-1rem">
-                                <p>
-                                    {area[0]} - {area[1]} m2
-                                </p>
-                            </Col>
-                        </Row>
-                    </Form.Group> */}
+                        <Form.Label className="ml-2">
+                            <strong> {area[0]}m2 - {area[1]}m2</strong>
+                        </Form.Label>
+                    </Form.Row>
+                    <Form.Row>
+                        <Form.Group as={Col} controlId="area">
+                            <Slider
+                                className="slider-range"
+                                range
+                                defaultValue={area}
+                                step={10}
+                                onChange={handleChangeArea}
+                                min={10}
+                                max={1000}
+                            />
+                        </Form.Group>
+                    </Form.Row>
                     <Form.Group as={Row} controlId="formGender">
                         <Form.Label column sm={2}>Household Sex</Form.Label>
                         <Col sm={10}>
@@ -110,7 +105,8 @@ function HouseFilterModal(props) {
                                 onChange={handleChange}
                                 required
                             >
-                                <option>Others</option>
+                                <option value="">Select Household Sex</option>
+                                <option>All</option>
                                 <option >Male</option>
                                 <option >Female</option>
                             </Form.Control>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Icon, Table, Checkbox } from 'semantic-ui-react'
+import { Icon, Table, Checkbox } from 'semantic-ui-react'
 
 
 

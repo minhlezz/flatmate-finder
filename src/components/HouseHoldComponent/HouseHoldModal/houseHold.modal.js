@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { Modal, Button, Form, Col, Row, Spinner } from 'react-bootstrap';
 import { CREATE_HOUSEHOLD } from '../../../utils/mutation';
-import { GET_HOUSEHOLDS } from '../../../utils/graphql';
 import { HOME_FILTER } from '../../../utils/graphql';
 
 function HouseHoldModal(props) {
