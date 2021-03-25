@@ -37,6 +37,28 @@ export const ALL_USERS = gql`
 }
 `;
 
+export const ALL_LOCATION = gql`
+    query {
+        allLocations {
+        latitude
+        longitude
+        user {
+            id
+            username
+            email
+            budget
+        }
+        household {
+            id
+            houseTitle
+            budget
+            owner {
+             username
+            }
+        }
+  }
+    }
+`
 
 
 export const FM_USERINFOR = gql`
@@ -128,6 +150,7 @@ export const GET_HOUSEHOLD = gql`
                 gender
                 age
             }
+          
         }
     }
 `
