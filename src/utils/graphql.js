@@ -48,14 +48,6 @@ export const ALL_LOCATION = gql`
             email
             budget
         }
-        household {
-            id
-            houseTitle
-            budget
-            owner {
-             username
-            }
-        }
   }
     }
 `
