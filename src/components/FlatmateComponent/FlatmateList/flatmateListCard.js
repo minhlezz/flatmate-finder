@@ -15,7 +15,7 @@ function FlatmateListCard(props) {
                     <Card.Title ><strong>{username ? username : 'Tom Fake'}</strong></Card.Title>
                     <Row>
                         <Col>
-                            <Card.Text> {age ? age : '24'}{' '}{gender ? gender : 'Male'} </Card.Text>
+                            <Card.Text> {age ? age : '24'}{' '}{gender ? gender : 'Female'} </Card.Text>
                             <Card.Text>{budget ? '$' + budget : 'Private budget'}</Card.Text>
                             <Card.Text>Melbourn, VIC, Australia </Card.Text>
                             <Card.Text>

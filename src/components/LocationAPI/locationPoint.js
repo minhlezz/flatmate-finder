@@ -74,7 +74,8 @@ function LocationPoint(props) {
   const onSave = async (e) => {
     e.preventDefault();
     await setValues(map.getCenter())
-    createLocation()
+    createLocation();
+    setValues('');
   }
 
   const [createLocation, { error, loading }] = useMutation(FM_CREATE_LOCATION, {
@@ -100,6 +101,7 @@ function LocationPoint(props) {
     e.preventDefault();
     await setValues(map.getCenter())
     updateLocation()
+    setValues('')
   }
 
   const [updateLocation] = useMutation(FM_UPDATE_LOCATION, {
