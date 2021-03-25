@@ -35,7 +35,7 @@ const UPDATE_USER = gql`
 `
 function ProfileForm(props) {
     const { user } = useContext(AuthContext);
-    const [values, setValues] = useState({});
+    const [values, setValues] = useState('');
     const { loading: updateLoading, error, data } = useQuery(GET_USER, {
         variables: { id: user.userId }
     });
@@ -92,7 +92,6 @@ function ProfileForm(props) {
                     <textarea placeholder='describe yourself'
                         disabled={false}
                         name="aboutMe"
-                        defaultValue={userData.getUser.aboutMe}
                         onChange={onChange}
                     />
                 </Form.Field>
@@ -101,7 +100,6 @@ function ProfileForm(props) {
                     <input placeholder='Username '
                         disabled={false}
                         name="username"
-                        defaultValue={userData.getUser.username}
                         onChange={onChange}
                         required
                     />
@@ -111,7 +109,6 @@ function ProfileForm(props) {
                     <input placeholder='Mobile Phone'
                         disabled={false}
                         name="mobile"
-                        defaultValue={userData.getUser.mobile}
                         onChange={onChange}
                         required
                     />
@@ -122,7 +119,6 @@ function ProfileForm(props) {
                         type='number'
                         disabled={false}
                         name="age"
-                        defaultValue={userData.getUser.age}
                         onChange={onChange}
                         required
                     />
@@ -130,11 +126,11 @@ function ProfileForm(props) {
                 <Form.Field>
                     <label>Gender</label>
                     <select placeholder='Gender'
-                        disabled={false}
                         name="gender"
-                        defaultValue={userData.getUser.gender}
                         onChange={onChange}
+                        required
                     >
+                        <option value=''>Select Gender</option>
                         <option>Male</option>
                         <option>Female</option>
                         <option>Others</option>
