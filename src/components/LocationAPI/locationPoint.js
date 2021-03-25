@@ -4,7 +4,7 @@ import { Spinner } from 'react-bootstrap';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import { FM_CREATE_LOCATION, FM_UPDATE_LOCATION } from '../../utils/mutation';
 import { Button } from 'semantic-ui-react';
-
+import { ALL_LOCATION } from '../../utils/graphql';
 
 
 function DraggableMarker({ center }) {
@@ -90,7 +90,10 @@ function LocationPoint(props) {
     variables: {
       latitude: values?.lat,
       longitude: values?.lng
-    }
+    },
+    refetchQueries: [{
+      query: ALL_LOCATION
+    }]
   });
 
   const onUpdate = async (e) => {
@@ -107,7 +110,12 @@ function LocationPoint(props) {
     },
     update(_, result) {
       console.log(result);
-    }
+    },
+    refetchQueries: [
+      {
+        query: ALL_LOCATION,
+      }
+    ]
   })
 
   if (error) {
@@ -126,8 +134,8 @@ function LocationPoint(props) {
               {location ? (
                 <Button onClick={onUpdate} primary>Update</Button>
               ) : (
-                  <Button primary onClick={onSave}>Save</Button>
-                )}
+                <Button primary onClick={onSave}>Save</Button>
+              )}
             </div>
           )}
 

@@ -8,6 +8,7 @@ import { useQuery } from '@apollo/client';
 import { Spinner } from 'react-bootstrap';
 import { AuthContext } from '../context/auth-context';
 import LocationPoint from '../components/LocationAPI/locationPoint';
+import LocationAPI from '../components/LocationAPI/locationAPI';
 
 function SingleFlatmate(props) {
     const { user } = useContext(AuthContext);
@@ -17,13 +18,13 @@ function SingleFlatmate(props) {
         setisEdit(!isEdit)
     }
 
-    const { loading, error, data } = useQuery(FM_USERINFOR, {
+    const { loading: singleLoading, error, data } = useQuery(FM_USERINFOR, {
         variables: { id: flatmateID }
-    })
+    });
     if (error) return <h2>Error!!!</h2>
     return (
         <>
-            {loading ? (<Spinner animation='border' />) : (
+            {singleLoading ? (<Spinner animation='border' />) : (
                 <div className="container-row-unwrap mh-105vh mb-2rem">
                     <div className="container-column mr-1rem">
                         {isEdit ?
@@ -40,7 +41,7 @@ function SingleFlatmate(props) {
                             </>
                             ) : (
                                 <>
-                                    {(user.userId === flatmateID) ? (<Button className="btn-general" secondary
+                                    {(user?.userId === flatmateID) ? (<Button className="btn-general" secondary
                                         onClick={onEdit}> Edit</Button>) :
                                         ('')
                                     }
@@ -54,7 +55,11 @@ function SingleFlatmate(props) {
                     <div className="container-column">
                         <FlatmateDetailCard flatmateID={flatmateID} />
                         <h3>Location </h3>
-                        <LocationPoint flatmateData={data} isEdit={isEdit} />
+                        {isEdit ? (
+                            <LocationPoint flatmateData={data} isEdit={isEdit} />
+                        ) : (
+                            <LocationAPI flatmateID={flatmateID} />
+                        )}
                     </div>
                 </div>
             )}
